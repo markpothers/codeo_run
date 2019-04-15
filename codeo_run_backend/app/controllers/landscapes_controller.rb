@@ -1,0 +1,2 @@
+class LandscapesController < ApplicationController
+end

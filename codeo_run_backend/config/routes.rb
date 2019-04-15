@@ -1,3 +1,8 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :landscapes
+  resources :items
+  resources :platforms
+  resources :non_playable_characters
+  resources :playable_characters
+
 end

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  items: MyString
+  x: 1
+  'y': 1
+  points: 1
+  health: 1
+  special: MyString
+
+two:
+  items: MyString
+  x: 1
+  'y': 1
+  points: 1
+  health: 1
+  special: MyString
