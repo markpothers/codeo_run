@@ -22,27 +22,38 @@ class PlayableCharacter {
         character.style.bottom = '60px'
     }
 
-    move(direction){
+    horizontal_move(horizontal_direction){
         let character = document.querySelector('#character')
         let left = parseInt(character.style.left)
-        let bottom = parseInt(character.style.bottom)
         let speed = 5
-            if(direction === "left"){
+            if(horizontal_direction === "left"){
                 character.style.left = `${left - speed}px`
             }
-            if(direction === "right"){
+            if(horizontal_direction === "right"){
                 character.style.left = `${left + speed}px`
             }
-            if(direction === "up"){
-                character.style.bottom = `${bottom + speed}px`
-            }
-            if(direction === "down"){
-                character.style.bottom = `${bottom - speed}px`
-            }
-            if(direction === "stop"){
+            if(horizontal_direction === "stop"){
                 character.style.left = `${left}px`
-                character.style.bottom = `${bottom}px`
             }
+    }
+
+    jump(){
+        console.log("I'm jumping!!!")
+        this.vertical_speed = 40
+        this.fall()
+    }
+
+    fall(){
+        console.log("I'm falling.............")
+        let character = document.querySelector('#character')
+        let bottom = parseInt(character.style.bottom)
+        setInterval( () => {
+            if (this.vertical_speed > -20) {
+                this.vertical_speed -= 0.004
+            }
+        }, 10)
+            console.log(this.vertical_speed)
+            character.style.bottom = `${bottom + this.vertical_speed}px`
     }
 
 }
