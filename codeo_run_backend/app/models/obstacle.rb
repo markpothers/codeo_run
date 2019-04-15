@@ -1,2 +1,0 @@
-class Obstacle < ApplicationRecord
-end

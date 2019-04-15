@@ -1,6 +1,6 @@
-class CreateBonusItems < ActiveRecord::Migration[5.2]
+class CreateItems < ActiveRecord::Migration[5.2]
   def change
-    create_table :bonus_items do |t|
+    create_table :items do |t|
       t.string :name
       t.integer :x
       t.integer :y
@@ -8,7 +8,6 @@ class CreateBonusItems < ActiveRecord::Migration[5.2]
       t.integer :health
       t.string :special
       t.belongs_to :landscape
-
 
       t.timestamps
     end

@@ -1,6 +1,6 @@
-class CreateObstacles < ActiveRecord::Migration[5.2]
+class CreatePlatforms < ActiveRecord::Migration[5.2]
   def change
-    create_table :obstacles do |t|
+    create_table :platforms do |t|
       t.string :name
       t.integer :x
       t.integer :y

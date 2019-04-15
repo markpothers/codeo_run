@@ -1,2 +1,0 @@
-class BonusItemsController < ApplicationController
-end

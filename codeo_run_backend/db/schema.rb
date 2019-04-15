@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2019_04_15_184939) do
 
-  create_table "bonus_items", force: :cascade do |t|
+  create_table "items", force: :cascade do |t|
     t.string "name"
     t.integer "x"
     t.integer "y"
@@ -22,15 +22,19 @@ ActiveRecord::Schema.define(version: 2019_04_15_184939) do
     t.integer "landscape_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["landscape_id"], name: "index_bonus_items_on_landscape_id"
+    t.index ["landscape_id"], name: "index_items_on_landscape_id"
   end
 
   create_table "landscapes", force: :cascade do |t|
     t.string "name"
     t.integer "x"
     t.integer "y"
+    t.integer "character_x"
+    t.integer "character_y"
+    t.integer "character_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_landscapes_on_character_id"
   end
 
   create_table "non_playable_characters", force: :cascade do |t|
@@ -43,20 +47,18 @@ ActiveRecord::Schema.define(version: 2019_04_15_184939) do
     t.index ["landscape_id"], name: "index_non_playable_characters_on_landscape_id"
   end
 
-  create_table "obstacles", force: :cascade do |t|
+  create_table "platforms", force: :cascade do |t|
     t.string "name"
     t.integer "x"
     t.integer "y"
     t.integer "landscape_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["landscape_id"], name: "index_obstacles_on_landscape_id"
+    t.index ["landscape_id"], name: "index_platforms_on_landscape_id"
   end
 
   create_table "playable_characters", force: :cascade do |t|
     t.string "name"
-    t.integer "x"
-    t.integer "y"
     t.integer "health"
     t.integer "points"
     t.integer "life_time_points"

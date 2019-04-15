@@ -1,2 +1,0 @@
-class BonusItem < ApplicationRecord
-end

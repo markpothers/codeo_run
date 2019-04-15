@@ -4,6 +4,9 @@ class CreateLandscapes < ActiveRecord::Migration[5.2]
       t.string :name
       t.integer :x
       t.integer :y
+      t.integer :character_x
+      t.integer :character_y
+      t.belongs_to :character
 
       t.timestamps
     end
