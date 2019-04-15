@@ -4,6 +4,7 @@ class CreateNonPlayableCharacters < ActiveRecord::Migration[5.2]
       t.string :name
       t.integer :x
       t.integer :y
+      t.belongs_to :landscape
 
       t.timestamps
     end

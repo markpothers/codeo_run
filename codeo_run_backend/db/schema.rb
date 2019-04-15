@@ -19,8 +19,10 @@ ActiveRecord::Schema.define(version: 2019_04_15_184939) do
     t.integer "points"
     t.integer "health"
     t.string "special"
+    t.integer "landscape_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["landscape_id"], name: "index_bonus_items_on_landscape_id"
   end
 
   create_table "landscapes", force: :cascade do |t|
@@ -35,8 +37,10 @@ ActiveRecord::Schema.define(version: 2019_04_15_184939) do
     t.string "name"
     t.integer "x"
     t.integer "y"
+    t.integer "landscape_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["landscape_id"], name: "index_non_playable_characters_on_landscape_id"
   end
 
   create_table "obstacles", force: :cascade do |t|

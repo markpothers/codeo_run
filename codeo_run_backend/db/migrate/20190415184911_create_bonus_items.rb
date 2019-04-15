@@ -7,6 +7,8 @@ class CreateBonusItems < ActiveRecord::Migration[5.2]
       t.integer :points
       t.integer :health
       t.string :special
+      t.belongs_to :landscape
+
 
       t.timestamps
     end
