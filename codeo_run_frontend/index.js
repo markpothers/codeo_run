@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     ctx.drawImage(bg, imgWidth + can.width, 0);
 
+
     imgWidth -= scrollSpeed;
     if (imgWidth <= -can.width){
       imgWidth = 0;}
