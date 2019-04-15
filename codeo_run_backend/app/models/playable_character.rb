@@ -1,0 +1,2 @@
+class PlayableCharacter < ApplicationRecord
+end

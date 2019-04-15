@@ -1,0 +1,2 @@
+class Obstacle < ApplicationRecord
+end

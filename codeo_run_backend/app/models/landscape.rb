@@ -1,0 +1,2 @@
+class Landscape < ApplicationRecord
+end

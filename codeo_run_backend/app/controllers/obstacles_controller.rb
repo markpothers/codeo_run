@@ -1,0 +1,2 @@
+class ObstaclesController < ApplicationController
+end
