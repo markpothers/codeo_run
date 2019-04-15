@@ -43,8 +43,10 @@ ActiveRecord::Schema.define(version: 2019_04_15_184939) do
     t.string "name"
     t.integer "x"
     t.integer "y"
+    t.integer "landscape_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["landscape_id"], name: "index_obstacles_on_landscape_id"
   end
 
   create_table "playable_characters", force: :cascade do |t|
