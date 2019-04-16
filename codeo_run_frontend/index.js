@@ -42,6 +42,7 @@ bg.addEventListener('load', () => {
 
 
   let character = new PlayableCharacter("Mark")
+  let platform = new Platform('log', `./assets/Platforms/log.png`)
 
   let horizontal_direction = "stop"
   document.addEventListener('keydown', function(e){
@@ -69,7 +70,8 @@ bg.addEventListener('load', () => {
   })
 
   setInterval(function(){
-    // Object.moveleft()
+    StaticObject.scroll()
+
     character.horizontal_move(horizontal_direction)
     let sprite = document.querySelector('#character')
     if (character.vertical_speed > -15) {
