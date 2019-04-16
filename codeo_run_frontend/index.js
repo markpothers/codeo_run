@@ -86,11 +86,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   let nextPlatformInterval = function(){
-    return ((Math.floor(Math.random() * 5000) + 1500))
+    return ((Math.floor(Math.random() * 5000) + 1500))  // 1.5 sec + 0 to 5 sec (i.e. 1.5 to 6.5 sec interval)
   }
 
   let nextItemInterval = function(){
-    return ((Math.floor(Math.random() * 3000) + 500))
+    return ((Math.floor(Math.random() * 3000) + 500))  // 0.5 sec + 0 to 3 sec (i.e. 0.5 to 3.5 sec interval)
   }
 
   setInterval(function(){
