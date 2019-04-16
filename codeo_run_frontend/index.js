@@ -1,3 +1,7 @@
+let horizontal_direction = "stop"
+let frameCount = 0;
+let vertical_direction = null
+
 document.addEventListener('DOMContentLoaded', () => {
   const can = document.querySelector('#background');
   const ctx = can.getContext('2d');
@@ -37,24 +41,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    loop()
-    bullIdle()
+  loop()
 
-  })
+})
 
 
   let character = new PlayableCharacter("Mark")
+  character.horizontal_move(horizontal_direction)
 
-
-  let horizontal_direction = "stop"
   document.addEventListener('keydown', function(e){
+    if(e.repeat) return
   if(e.key == 'ArrowRight'){
     console.log("right")
     horizontal_direction = "right"
+    character.horizontal_move(horizontal_direction)
     }
     if(e.key == 'ArrowLeft'){
       console.log("left")
       horizontal_direction = "left"
+      character.horizontal_move(horizontal_direction)
     }
   })
 
@@ -62,25 +67,23 @@ document.addEventListener('DOMContentLoaded', () => {
     if(e.key == 'ArrowRight'||e.key == 'ArrowLeft'){
     console.log("stop")
     horizontal_direction = "stop"
+    character.horizontal_move(horizontal_direction)
     }
   })
 
   document.addEventListener('keydown', function(e){
     if(e.key == ' '){
+      vertical_direction = 'up'
       character.jump()
     }
   })
 
   setInterval(function(){
-    StaticObject.scroll()
-
-    character.horizontal_move(horizontal_direction)
-    let sprite = document.querySelector('#character')
     if (character.vertical_speed > -15) {
       character.vertical_speed -= 1.2
     }
-    if(parseInt(sprite.style.bottom) > 25){
-      character.fall()
+    if(parseInt(character.y) < 220){
+      character.verticalMovement()
     }
   }, 10)
 
