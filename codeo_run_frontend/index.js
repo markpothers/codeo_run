@@ -89,7 +89,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }, 5000)
 
   setInterval(function(){
-    new Item("coin1", `./assets/Item/coin1.png`, 50);
+
+    let coin1 = new Item("coin1", `./assets/Item/coin1.png`, 50);
+    let energydraw = new Item("energydraw", `./assets/Item/energydraw.png`, 50);
+    let poison = new Item("poison", `./assets/Item/poison.png`, 50);
+    let fuel = new Item("fuel", `./assets/Item/fuel.png`, 50);
+    let batterydown = new Item("batterydown", `./assets/Item/batterydown.png`, 50)
+
+    Item.pickRandomItem();
+    
   }, 2000)
 
 
