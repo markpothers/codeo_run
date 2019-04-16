@@ -7,6 +7,7 @@ class PlayableCharacter {
         this.points = points
         this.health = health
         this.life_time_points = life_time_points
+        this.vertical_speed = -20
         this.spawn()
     }
 
@@ -39,7 +40,7 @@ class PlayableCharacter {
 
     jump(){
         console.log("I'm jumping!!!")
-        this.vertical_speed = 40
+        this.vertical_speed = 30
         this.fall()
     }
 
@@ -47,11 +48,6 @@ class PlayableCharacter {
         console.log("I'm falling.............")
         let character = document.querySelector('#character')
         let bottom = parseInt(character.style.bottom)
-        setInterval( () => {
-            if (this.vertical_speed > -20) {
-                this.vertical_speed -= 0.004
-            }
-        }, 10)
             console.log(this.vertical_speed)
             character.style.bottom = `${bottom + this.vertical_speed}px`
     }

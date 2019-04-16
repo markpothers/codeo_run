@@ -57,6 +57,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Object.moveleft()
     character.horizontal_move(horizontal_direction)
     let sprite = document.querySelector('#character')
+    if (character.vertical_speed > -15) {
+      character.vertical_speed -= 1.2
+    }
     if(parseInt(sprite.style.bottom) > 25){
       character.fall()
     }
