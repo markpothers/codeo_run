@@ -18,31 +18,34 @@ document.addEventListener('DOMContentLoaded', () => {
   const  scrollSpeed = 2;
 
 
-bg.addEventListener('load', () => {
-  const loop = () => {
-    let imgPos = imgWidth;
+  bg.addEventListener('load', () => {
+    const loop = () => {
+      let imgPos = imgWidth;
 
 
-    ctx.drawImage(bg, imgPos, 0);
-      while(imgPos < can.width) {
-        ctx.drawImage(bg, imgPos += bg.width, 0);
-      }
-    imgWidth -= scrollSpeed;
-    if (imgWidth <= -bg.width){
-      imgWidth = 0;}
+      ctx.drawImage(bg, imgPos, 0);
+        while(imgPos < can.width) {
+          ctx.drawImage(bg, imgPos += bg.width, 0);
+        }
+      imgWidth -= scrollSpeed;
+      if (imgWidth <= -bg.width){
+        imgWidth = 0;}
 
 
-    window.requestAnimationFrame(loop);
-  }
+      window.requestAnimationFrame(loop);
+    }
 
 
 
-  loop()
-  bullIdle()
+    loop()
+    bullIdle()
+
+  })
 
 
   let character = new PlayableCharacter("Mark")
   let platform = new Platform('log', `./assets/Platforms/log.png`)
+
 
   let horizontal_direction = "stop"
   document.addEventListener('keydown', function(e){
@@ -82,6 +85,11 @@ bg.addEventListener('load', () => {
     }
   }, 10)
 
+  setInterval(function(){
+      new Platform('log', `./assets/Platforms/log.png`)
+  }, 5000)
 
-  })
+
+
+
 })
