@@ -1,9 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const can = document.getElementById('canvas1');
+  const can = document.querySelector('#background');
   const ctx = can.getContext('2d');
+  const can2 = document.querySelector('#foreground');
+  const ctx2 = can.getContext('2d');
 
-  can.width = 800;
+
+  can.width = window.innerWidth -20;
   can.height = 400;
+  can2.width = window.innerWidth -20;
+  can2.height = 400;
 
   const bg = document.createElement('img')
   bg.src = 'assets/desert_BG.png'
@@ -12,20 +17,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const  scrollSpeed = 2;
 
+
+bg.addEventListener('load', () => {
   const loop = () => {
-    ctx.drawImage(bg, imgWidth, 0);
-
-    ctx.drawImage(bg, imgWidth + can.width, 0);
+    let imgPos = imgWidth;
 
 
+    ctx.drawImage(bg, imgPos, 0);
+      while(imgPos < can.width) {
+        ctx.drawImage(bg, imgPos += bg.width, 0);
+      }
     imgWidth -= scrollSpeed;
-    if (imgWidth <= -can.width){
+    if (imgWidth <= -bg.width){
       imgWidth = 0;}
+
 
     window.requestAnimationFrame(loop);
   }
 
+
+
   loop()
+  bullIdle()
+
+
   let character = new PlayableCharacter("Mark")
 
   let horizontal_direction = "stop"
@@ -66,6 +81,5 @@ document.addEventListener('DOMContentLoaded', () => {
   }, 10)
 
 
+  })
 })
-
-

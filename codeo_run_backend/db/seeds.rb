@@ -6,8 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-texaspete = PlayableCharacter.new(name:"Texas Pete", health:100, points:0, life_time_points:0, x:100, y:100)
-utahlarry = PlayableCharacter.new(name:"Utah Larry", health:100, points:0, life_time_points:0, x:100, y:100)
+texaspete = PlayableCharacter.new(name:"Texas Pete", health:100, points:0, life_time_points:0)
+utahlarry = PlayableCharacter.new(name:"Utah Larry", health:100, points:0, life_time_points:0)
 
 crazybob = NonPlayableCharacter.new(name:"Crazy Bob", x:500, y: 200, landscape_id:1)
 wildbill = NonPlayableCharacter.new(name:"Wild Bill", x:800, y: 250, landscape_id:1)
@@ -26,3 +26,5 @@ platform1 = Platform.new(name:"platform1", x:800, y:200, landscape_id:1)
 platform2 = Platform.new(name:"platform2", x:800, y:200, landscape_id:1)
 platform3 = Platform.new(name:"platform3", x:800, y:200, landscape_id:1)
 platform4 = Platform.new(name:"platform4", x:800, y:200, landscape_id:1)
+
+landscape = Landscape.new(name:"landscape", x:0, character_x: 0, character_y: 0, character_id: 1)
