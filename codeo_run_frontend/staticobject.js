@@ -1,19 +1,20 @@
 class StaticObject {
 
-    spawn(height){
+    spawn(){
         const object = document.createElement('img')
         object.src = this.src
         let object_container = document.querySelector("#character_container")
         object_container.append(object)
-        object.className="object"
+        object.className="staticobject"
+        object.id = this.name
         object.style.position = "relative"
-        object.style.width = '300px'
+        object.style.width =  `${this.width}px`
         object.style.left = `${window.innerWidth + 10}px`
-        object.style.bottom = `${height}px`
+        object.style.bottom = `${this.height}px`
     }
 
     static scroll(){
-        let objects = document.querySelectorAll('.object')
+        let objects = document.querySelectorAll('.staticobject')
         objects.forEach(function(object){
             let left = parseInt(object.style.left)
             let speed = 1
@@ -22,6 +23,10 @@ class StaticObject {
                 object.remove()
             }
         })
-
     }
+
+    randomHeight(){
+        return (300*Math.random())-310
+    }
+
 }

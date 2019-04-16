@@ -12,8 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const bg = document.createElement('img')
   bg.src = 'assets/desert_BG.png'
-  const coin1 = new Item("coin1", x=200, y=200,health = 100, points = 100, special = 100 );
-  can.append(coin1);
 
   let imgWidth = 0;
 
@@ -46,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   let character = new PlayableCharacter("Mark")
-  let platform = new Platform('log', `./assets/Platforms/log.png`)
 
 
   let horizontal_direction = "stop"
@@ -88,10 +85,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }, 10)
 
   setInterval(function(){
-      new Platform('log', `./assets/Platforms/log.png`)
+    new Platform('log', `./assets/Platforms/log.png`, 250)
   }, 5000)
 
-
+  setInterval(function(){
+    new Item("coin1", `./assets/Item/coin1.png`, 50);
+  }, 2000)
 
 
 })
