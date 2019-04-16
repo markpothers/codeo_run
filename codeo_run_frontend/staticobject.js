@@ -26,7 +26,7 @@ class StaticObject {
     }
 
     randomHeight(){
-        return (250*Math.random())+450
+        return (250*Math.random())+500
     }
 
 }
