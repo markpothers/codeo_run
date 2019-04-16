@@ -22,27 +22,28 @@ document.addEventListener('DOMContentLoaded', () => {
   const  scrollSpeed = 2;
 
 
-bg.addEventListener('load', () => {
-  const loop = () => {
-    let imgPos = imgWidth;
+  bg.addEventListener('load', () => {
+    const loop = () => {
+      let imgPos = imgWidth;
 
 
-    ctx.drawImage(bg, imgPos, 0);
-      while(imgPos < can.width) {
-        ctx.drawImage(bg, imgPos += bg.width, 0);
-      }
-    imgWidth -= scrollSpeed;
-    if (imgWidth <= -bg.width){
-      imgWidth = 0;}
+      ctx.drawImage(bg, imgPos, 0);
+        while(imgPos < can.width) {
+          ctx.drawImage(bg, imgPos += bg.width, 0);
+        }
+      imgWidth -= scrollSpeed;
+      if (imgWidth <= -bg.width){
+        imgWidth = 0;}
 
 
-    window.requestAnimationFrame(loop);
-  }
+      window.requestAnimationFrame(loop);
+    }
 
 
 
   loop()
-  //bullIdle()
+
+})
 
 
   let character = new PlayableCharacter("Mark")
@@ -78,8 +79,6 @@ bg.addEventListener('load', () => {
   })
 
   setInterval(function(){
-    // Object.moveleft()
-    console.log(character.y)
     if (character.vertical_speed > -15) {
       character.vertical_speed -= 1.2
     }
@@ -89,5 +88,22 @@ bg.addEventListener('load', () => {
   }, 10)
 
 
-  })
+  let nextPlatformInterval = function(){
+    return ((Math.floor(Math.random() * 5000) + 1500))
+  }
+
+  let nextItemInterval = function(){
+    return ((Math.floor(Math.random() * 3000) + 500))
+  }
+
+  setInterval(function(){
+    Platform.choosePlatform()
+    console.log(nextPlatformInterval())
+  }, nextPlatformInterval())
+
+  setInterval(function(){
+    Item.pickRandomItem();
+    console.log(nextItemInterval())
+  }, nextItemInterval())
+
 })

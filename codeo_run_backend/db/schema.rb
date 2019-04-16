@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(version: 2019_04_15_184939) do
   create_table "landscapes", force: :cascade do |t|
     t.string "name"
     t.integer "x"
-    t.integer "y"
     t.integer "character_x"
     t.integer "character_y"
     t.integer "character_id"
