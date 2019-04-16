@@ -79,6 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
   setInterval(function(){
+    StaticObject.scroll()
     if (character.vertical_speed > -15) {
       character.vertical_speed -= 1.2
     }

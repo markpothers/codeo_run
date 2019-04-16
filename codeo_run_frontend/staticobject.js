@@ -7,6 +7,7 @@ class StaticObject {
         object_container.append(object)
         object.className="staticobject"
         object.id = this.name
+        object.style.zIndex = 3
         object.style.position = "absolute"
         object.style.width =  `${this.width}px`
         object.style.left = `${window.innerWidth + 10}px`

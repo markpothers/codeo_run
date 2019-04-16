@@ -104,7 +104,7 @@ class PlayableCharacter {
         let x = parseInt(this.x)
         let y = parseInt(this.y)
         let cycleLoop = [0, 1, 2, 3, 4, 5, 6, 7];
-        const  scrollSpeed = 15;
+        const  scrollSpeed = 30;
         //test sprite script
 
         frameCount++;
@@ -129,7 +129,7 @@ class PlayableCharacter {
         let x = parseInt(this.x)
         let y = parseInt(this.y)
         let cycleLoop = [0, 1, 2, 3, 4, 5, 6, 7];
-        const  scrollSpeed = 15;
+        const  scrollSpeed = 30;
       //test sprite script
 
         frameCount++;
