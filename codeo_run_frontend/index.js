@@ -43,32 +43,39 @@ bg.addEventListener('load', () => {
 
   let character = new PlayableCharacter("Mark")
 
-
-let direction = "stop"
+  let horizontal_direction = "stop"
   document.addEventListener('keydown', function(e){
-    if(e.repeat) return
   if(e.key == 'ArrowRight'){
-    direction = "right"
+    console.log("right")
+    horizontal_direction = "right"
     }
     if(e.key == 'ArrowLeft'){
-      direction = "left"
-    }
-    if(e.key == 'ArrowUp'){
-      direction = "up"
-    }
-    if(e.key == 'ArrowDown'){
-      direction = "down"
+      console.log("left")
+      horizontal_direction = "left"
     }
   })
 
-  document.addEventListener('keyup', function(){
-    direction = "stop"
+  document.addEventListener('keyup', function(e){
+    if(e.key == 'ArrowRight'||e.key == 'ArrowLeft'){
+    console.log("stop")
+    horizontal_direction = "stop"
+    }
+  })
+
+  document.addEventListener('keydown', function(e){
+    if(e.key == ' '){
+      character.jump()
+    }
   })
 
   setInterval(function(){
     // Object.moveleft()
-    character.move(direction)
-  }, 50)
+    character.horizontal_move(horizontal_direction)
+    let sprite = document.querySelector('#character')
+    if(parseInt(sprite.style.bottom) > 25){
+      //character.fall()
+    }
+  }, 10)
 
 
   })
