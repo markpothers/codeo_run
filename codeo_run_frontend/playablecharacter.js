@@ -11,7 +11,7 @@ class PlayableCharacter {
         this.health = health
         this.life_time_points = life_time_points
         this.vertical_speed = -20
-        this.spawn()
+        this.spawn()   
     }
 
     spawn(){

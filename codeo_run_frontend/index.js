@@ -72,6 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
   document.addEventListener('keydown', function(e){
+    if(e.repeat) return
     if(e.key == ' '){
       vertical_direction = 'up'
       character.jump()
