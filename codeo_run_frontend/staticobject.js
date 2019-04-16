@@ -1,5 +1,9 @@
 class StaticObject {
+<<<<<<< HEAD
 
+=======
+   
+>>>>>>> new
     spawn(){
         const object = document.createElement('img')
         object.src = this.src
@@ -11,6 +15,10 @@ class StaticObject {
         object.style.width =  `${this.width}px`
         object.style.left = `${window.innerWidth + 10}px`
         object.style.bottom = `${this.height}px`
+<<<<<<< HEAD
+=======
+        
+>>>>>>> new
     }
 
     static scroll(){
@@ -29,4 +37,10 @@ class StaticObject {
         return (300*Math.random())-310
     }
 
+<<<<<<< HEAD
 }
+=======
+   
+}
+
+>>>>>>> new

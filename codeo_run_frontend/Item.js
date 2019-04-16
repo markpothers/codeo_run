@@ -1,5 +1,5 @@
 class Item extends StaticObject {
-    constructor(name, src, width, health = 100, points = 100, special = ""){
+    constructor(name, src , width=50, health = 100, points = 100, special = ""){
         super()
         this.name = name
         this.src = src
@@ -9,6 +9,7 @@ class Item extends StaticObject {
         this.width = width
         this.height = this.randomHeight()
         this.spawn()
+        all.push(this)
     }
 
 
@@ -24,19 +25,14 @@ class Item extends StaticObject {
     //     item.style.bottom = '0px'
     // }
 
-  
-
+    static pickRandomItem(){
+        return all[Math.floor(Math.random()*all.length)];
+        //debugger
+    }
+    
+   
 }
 
-// create_table "items", force: :cascade do |t|
-// t.string "name"
-// t.integer "x"
-// t.integer "y"
-// t.integer "points"
-// t.integer "health"
-// t.string "special"
-// t.integer "landscape_id"
-// t.datetime "created_at", null: false
-// t.datetime "updated_at", null: false
-// t.index ["landscape_id"], name: "index_items_on_landscape_id"
-// end
+const all = [];
+
+
