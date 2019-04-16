@@ -7,7 +7,7 @@ class StaticObject {
         object_container.append(object)
         object.className="staticobject"
         object.id = this.name
-        object.style.position = "relative"
+        object.style.position = "absolute"
         object.style.width =  `${this.width}px`
         object.style.left = `${window.innerWidth + 10}px`
         object.style.bottom = `${this.height}px`
@@ -26,7 +26,7 @@ class StaticObject {
     }
 
     randomHeight(){
-        return (300*Math.random())-310
+        return (300*Math.random())+500
     }
 
 }

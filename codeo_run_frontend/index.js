@@ -81,11 +81,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if(parseInt(sprite.style.bottom) > 25){
       character.fall()
-    }
+    } 
   }, 10)
 
   setInterval(function(){
-    new Platform('log', `./assets/Platforms/log.png`, 250)
+    Platform.choosePlatform()
   }, 5000)
 
   setInterval(function(){
