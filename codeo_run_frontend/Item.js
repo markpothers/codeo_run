@@ -9,30 +9,15 @@ class Item extends StaticObject {
         this.width = width
         this.height = this.randomHeight()
         this.spawn()
-        all.push(this)
     }
-
-
-    // spawn(){
-    //     const item = document.createElement('img')
-    //     item.src = this.src
-    //     const item_container = document.querySelector("#character_container")
-    //     item_container.append(item)
-    //     item.id="item"
-    //     item.style.position = "relative"
-    //     item.style.width = '40px'
-    //     item.style.left = '0px'
-    //     item.style.bottom = '0px'
-    // }
 
     static pickRandomItem(){
-        return all[Math.floor(Math.random()*all.length)];
-        //debugger
+        let names = ["coin1", "energydraw", "poison", "fuel", "batterydown"]
+        let srcs = [`./assets/Item/coin1.png`,`./assets/Item/energydraw.png`,`./assets/Item/poison.png`,`./assets/Item/fuel.png`, `./assets/Item/batterydown.png`]
+        let sizes = [50, 50, 50, 50, 50]
+        let choice = (Math.floor(Math.random() * names.length))
+        return new Item (names[choice], srcs[choice], sizes[choice])
     }
-    
-   
+
+
 }
-
-const all = [];
-
-

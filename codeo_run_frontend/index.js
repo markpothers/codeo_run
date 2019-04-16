@@ -81,24 +81,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if(parseInt(sprite.style.bottom) > 25){
       character.fall()
-    } 
+    }
   }, 10)
+
+
+  let nextPlatformInterval = function(){
+    return ((Math.floor(Math.random() * 5000) + 1500))
+  }
+
+  let nextItemInterval = function(){
+    return ((Math.floor(Math.random() * 3000) + 500))
+  }
 
   setInterval(function(){
     Platform.choosePlatform()
-  }, 5000)
+    console.log(nextPlatformInterval())
+  }, nextPlatformInterval())
 
   setInterval(function(){
-
-    let coin1 = new Item("coin1", `./assets/Item/coin1.png`, 50);
-    let energydraw = new Item("energydraw", `./assets/Item/energydraw.png`, 50);
-    let poison = new Item("poison", `./assets/Item/poison.png`, 50);
-    let fuel = new Item("fuel", `./assets/Item/fuel.png`, 50);
-    let batterydown = new Item("batterydown", `./assets/Item/batterydown.png`, 50)
-
     Item.pickRandomItem();
-    
-  }, 2000)
-
+    console.log(nextItemInterval())
+  }, nextItemInterval())
 
 })
