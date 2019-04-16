@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const bg = document.createElement('img')
   bg.src = 'assets/desert_BG.png'
+  const coin1 = new Item("coin1", x=200, y=200,health = 100, points = 100, special = 100 );
+  can.append(coin1);
 
   let imgWidth = 0;
 
