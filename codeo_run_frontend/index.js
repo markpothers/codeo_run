@@ -12,38 +12,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const bg = document.createElement('img')
   bg.src = 'assets/desert_BG.png'
-  const coin1 = new Item("coin1", x=200, y=200,health = 100, points = 100, special = 100 );
-  can.append(coin1);
 
   let imgWidth = 0;
 
   const  scrollSpeed = 2;
 
 
-bg.addEventListener('load', () => {
-  const loop = () => {
-    let imgPos = imgWidth;
+  bg.addEventListener('load', () => {
+    const loop = () => {
+      let imgPos = imgWidth;
 
 
-    ctx.drawImage(bg, imgPos, 0);
-      while(imgPos < can.width) {
-        ctx.drawImage(bg, imgPos += bg.width, 0);
-      }
-    imgWidth -= scrollSpeed;
-    if (imgWidth <= -bg.width){
-      imgWidth = 0;}
+      ctx.drawImage(bg, imgPos, 0);
+        while(imgPos < can.width) {
+          ctx.drawImage(bg, imgPos += bg.width, 0);
+        }
+      imgWidth -= scrollSpeed;
+      if (imgWidth <= -bg.width){
+        imgWidth = 0;}
 
 
-    window.requestAnimationFrame(loop);
-  }
+      window.requestAnimationFrame(loop);
+    }
 
 
 
-  loop()
-  bullIdle()
+    loop()
+    bullIdle()
+
+  })
 
 
   let character = new PlayableCharacter("Mark")
+
 
   let horizontal_direction = "stop"
   document.addEventListener('keydown', function(e){
@@ -71,7 +72,8 @@ bg.addEventListener('load', () => {
   })
 
   setInterval(function(){
-    // Object.moveleft()
+    StaticObject.scroll()
+
     character.horizontal_move(horizontal_direction)
     let sprite = document.querySelector('#character')
     if (character.vertical_speed > -15) {
@@ -82,6 +84,21 @@ bg.addEventListener('load', () => {
     }
   }, 10)
 
+  setInterval(function(){
+    new Platform('log', `./assets/Platforms/log.png`, 250)
+  }, 5000)
 
-  })
+  setInterval(function(){
+
+    let coin1 = new Item("coin1", `./assets/Item/coin1.png`, 50);
+    let energydraw = new Item("energydraw", `./assets/Item/energydraw.png`, 50);
+    let poison = new Item("poison", `./assets/Item/poison.png`, 50);
+    let fuel = new Item("fuel", `./assets/Item/fuel.png`, 50);
+    let batterydown = new Item("batterydown", `./assets/Item/batterydown.png`, 50)
+
+    Item.pickRandomItem();
+    
+  }, 2000)
+
+
 })
