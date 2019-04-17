@@ -31,7 +31,7 @@ class StaticObject {
             positions.push(parseInt(object.style.bottom ));
             positions.push(parseInt((object.style.left) + (object.style.width)));//right position in x axis
             positions.push(parseInt((object.style.height)+ (object.style.bottom)));// top position in y axis
-            console.log(positions)
+           // console.log(positions)
             return positions;//left, bottom, width, height
             
             

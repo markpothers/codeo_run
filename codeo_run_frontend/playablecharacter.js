@@ -13,7 +13,8 @@ class PlayableCharacter extends AnimatedObject{
         this.vertical_speed = -20
         Counter.changeScore(this.points)
         Counter.changeHealth(this.health)
-        
+        allPcs.push(this)
+        this.element = this
         this.pcPositions = pcPositions;
 
         this.scaleFactor = 4
@@ -51,6 +52,7 @@ class PlayableCharacter extends AnimatedObject{
           }
 
         }
+       
     }
 
     verticalMovement(){
@@ -60,16 +62,19 @@ class PlayableCharacter extends AnimatedObject{
         if(this.direction == 'stop'){
           this.drawFrame(0, 0, this.x, this.y);
           this.pcPositions = [parseInt(this.x), parseInt(this.y)];
+          //console.log(this.pcPositions)
 
         } else if(this.direction == 'right' ){
           this.x += 7
           this.drawFrame(0, 0, this.x, this.y);
           this.pcPositions = [parseInt(this.x), parseInt(this.y)];
+         // console.log(this.pcPositions)
 
         } else if(this.direction == 'left'){
           this.x -= 7
           this.drawFrame(0, 8, this.x, this.y);
           this.pcPositions = [parseInt(this.x), parseInt(this.y)];
+         // console.log(this.pcPositions);
 
         }
     }
@@ -77,18 +82,23 @@ class PlayableCharacter extends AnimatedObject{
     idle() {
       this.animateObject(this.spritesheet.idle, 15)
       this.pcPositions = [parseInt(this.x), parseInt(this.y)];
+     // console.log(this.pcPositions)
 
     }
 
     runLeft() {
       this.animateObject(this.spritesheet.runLeft, 5, () => {this.x -= 30})
       this.pcPositions = [parseInt(this.x), parseInt(this.y)];
-
+      //console.log(this.pcPositions)
     }
 
     runRight() {
       this.animateObject(this.spritesheet.runRight, 5, () => {this.x += 30})
       this.pcPositions = [parseInt(this.x), parseInt(this.y)];
-
+     // console.log(this.pcPositions)
     }
+
+    
+  
 }
+const allPcs = [];
