@@ -1,17 +1,52 @@
-class PlayableCharacter {
+class PlayableCharacter extends AnimatedObject{
 
     constructor(name, x=660, y=220, points=0, health=100, life_time_points=0){
-        const charImg = document.createElement('img')
-        charImg.src = `./assets/mainChar/mainCharSheet.png`
-        this.img = charImg
+
+        super(`./assets/mainChar/mainCharSheet.png`)
+
         this.name = name
-        this.x = `${x}px`
-        this.y = `${y}px`
+        this.x = x
+        this.y = y
         this.points = points
         this.health = health
         this.life_time_points = life_time_points
         this.vertical_speed = -20
-        this.spawn()   
+        this.scaleFactor = 4
+        this.direction = 'stop'
+        this.spawn()
+
+
+        this.spritesheet = {
+
+
+          width: 32,
+          height: 32,
+
+          idle: {
+
+            direction: 'stop',
+            frames: 12,
+            yPos: 0
+
+          },
+
+          runLeft: {
+
+            direction: 'left',
+            frames: 7,
+            yPos: 9
+
+          },
+
+          runRight: {
+
+            direction: 'right',
+            frames: 7,
+            yPos: 1
+
+          }
+
+        }
     }
 
     spawn(){
@@ -26,23 +61,23 @@ class PlayableCharacter {
         character.style.bottom = '60px'
     }
 
-    horizontal_move(horizontal_direction){
-        let character = document.querySelector('#character')
-        let left = parseInt(character.style.left)
-        let speed = 5
-            if(horizontal_direction === "left"){
-                //character.style.left = `${left - speed}px`
-                this.runLeft()
-            }
-            if(horizontal_direction === "right"){
-                //character.style.left = `${left + speed}px`
-                this.runRight()
-            }
-            if(horizontal_direction === "stop"){
-                //character.style.left = `${left}px`
-                this.idle()
-            }
-    }
+    // horizontal_move(direction){
+    //     let character = document.querySelector('#character')
+    //     let left = parseInt(character.style.left)
+    //     let speed = 5
+    //         if(horizontal_direction === "left"){
+    //             //character.style.left = `${left - speed}px`
+    //             this.runLeft()
+    //         }
+    //         if(horizontal_direction === "right"){
+    //             //character.style.left = `${left + speed}px`
+    //             this.runRight()
+    //         }
+    //         if(horizontal_direction === "stop"){
+    //             //character.style.left = `${left}px`
+    //             this.idle()
+    //         }
+    // }
 
     jump(){
         console.log("I'm jumping!!!")
@@ -68,86 +103,21 @@ class PlayableCharacter {
     }
 
 
-    drawFrame(frameX, frameY, canvasX, canvasY) {
-      let width = 32
-      let height = 32
-
-      ctx2.drawImage(this.img, frameX * width, frameY * height, width, height,
-      canvasX, canvasY, width * 4, height * 4);
-      }
+    // drawFrame(frameX, frameY, canvasX, canvasY) {
+    //   ctx2.drawImage(this.img, frameX * this.spritesheet.width, frameY * height, width, height,
+    //   canvasX, canvasY, width * 4, height * 4);
+    //   }
 
 
       idle() {
-        if(horizontal_direction == 'stop'){
-          //console.log(this)
-        let x = parseInt(this.x)
-        let y = parseInt(this.y)
-        let cycleLoop = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-        frameCount++;
-        if (frameCount < 15) {
-            window.requestAnimationFrame(() => this.idle());
-            return;
-          }
-        frameCount = 0;
-        ctx2.clearRect(0, 0, can2.width, can2.height);
-        this.drawFrame(cycleLoop[currentLoopIndex], 0, x, y);
-        currentLoopIndex++;
-        if (currentLoopIndex >= cycleLoop.length-1) {
-          currentLoopIndex = 0;
-        }
-        window.requestAnimationFrame(() => this.idle());
-      }
+        this.animateObject(this.spritesheet.idle, 15)
       }
 
       runLeft() {
-        if(horizontal_direction == 'left'){
-        let x = parseInt(this.x)
-        let y = parseInt(this.y)
-        let cycleLoop = [0, 1, 2, 3, 4, 5, 6, 7];
-        const  scrollSpeed = 30;
-        //test sprite script
-
-        frameCount++;
-        if (frameCount < 5) {
-            window.requestAnimationFrame(() => this.runLeft());
-            return;
-          }
-          frameCount = 0;
-          ctx2.clearRect(0, 0, can2.width, can2.height);
-          this.drawFrame(cycleLoop[currentLoopIndex], 9, x, y);
-          this.x = `${x -= scrollSpeed}px`
-          currentLoopIndex++;
-          if (currentLoopIndex >= cycleLoop.length-1) {
-            currentLoopIndex = 0;
-          }
-          window.requestAnimationFrame(() => this.runLeft());
-        }
-        }
+        this.animateObject(this.spritesheet.runLeft, 5, () => {this.x -= 30})
+      }
 
       runRight() {
-        if(horizontal_direction == 'right'){
-        let x = parseInt(this.x)
-        let y = parseInt(this.y)
-        let cycleLoop = [0, 1, 2, 3, 4, 5, 6, 7];
-        const  scrollSpeed = 30;
-      //test sprite script
-
-        frameCount++;
-        if (frameCount < 5) {
-            window.requestAnimationFrame(() => this.runRight());
-            return;
-          }
-          console.log(scrollSpeed)
-        frameCount = 0;
-        ctx2.clearRect(0, 0, can2.width, can2.height);
-        this.drawFrame(cycleLoop[currentLoopIndex], 1, x, y);
-        this.x = `${x += scrollSpeed}px`
-        currentLoopIndex++;
-        if (currentLoopIndex >= cycleLoop.length-1) {
-          currentLoopIndex = 0;
-        }
-        window.requestAnimationFrame(() => this.runRight());
+        this.animateObject(this.spritesheet.runRight, 5, () => {this.x += 30})
       }
-    }
-
 }
