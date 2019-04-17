@@ -13,6 +13,7 @@ class StaticObject {
         object.style.left = `${window.innerWidth + 10}px`
         object.style.bottom = `${this.bottom}px`
         object.style.height = `${this.height}px`
+        this.element = object
     }
 
     static scroll(){
@@ -24,11 +25,26 @@ class StaticObject {
             if (parseInt(object.style.left)+parseInt(object.style.width)+100 < 0){
                 object.remove()
             }
+            renderPosition(object)
         })
     }
 
     randomVerticalPosition(){
         return (250*Math.random())+500
+    }
+
+    renderPosition(object){
+        
+        let positions = [];
+            
+        positions.push(parseInt(object.style.left)); 
+        positions.push(parseInt(object.style.bottom ));
+        positions.push(parseInt((object.style.left) + (object.style.width)));//right position in x axis
+        positions.push(parseInt((object.style.height)+ (object.style.bottom)));// top position in y axis
+        console.log(positions)
+        return positions;//left, bottom, width, height
+        
+
     }
 
 }
