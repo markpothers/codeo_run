@@ -1,6 +1,12 @@
-let horizontal_direction = "stop"
 let frameCount = 0;
 let vertical_direction = null
+
+function range(start, end, step = 1) {
+
+  const length = Math.floor(Math.abs((end - start) / step)) + 1;
+  return Array.from(Array(length), (x, index) => start + index * step);
+
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   const can = document.querySelector('#background');
@@ -47,36 +53,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let scoreboard = new Counter(100, 100)
   let character = new PlayableCharacter("Mark")
-
-  character.horizontal_move(horizontal_direction)
+  character.idle()
 
   document.addEventListener('keydown', function(e){
     if(e.repeat) return
   if(e.key == 'ArrowRight'){
-    console.log("right")
-    horizontal_direction = "right"
-    character.horizontal_move(horizontal_direction)
+    character.direction = "right"
+    character.runRight()
     }
     if(e.key == 'ArrowLeft'){
-      console.log("left")
-      horizontal_direction = "left"
-      character.horizontal_move(horizontal_direction)
+      character.direction = "left"
+      character.runLeft()
     }
   })
 
   document.addEventListener('keyup', function(e){
     if(e.key == 'ArrowRight'||e.key == 'ArrowLeft'){
-    console.log("stop")
-    horizontal_direction = "stop"
-    character.horizontal_move(horizontal_direction)
+    character.direction = "stop"
+    character.idle()
     }
   })
 
   document.addEventListener('keydown', function(e){
     if(e.repeat) return
     if(e.key == ' '){
-      vertical_direction = 'up'
-      character.jump()
+      character.vertical_speed = 20
+      character.verticalMovement()
     }
   })
 
@@ -101,12 +103,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   setInterval(function(){
     Platform.choosePlatform()
-    console.log(nextPlatformInterval())
   }, nextPlatformInterval())
 
   setInterval(function(){
     Item.pickRandomItem();
-    console.log(nextItemInterval())
   }, nextItemInterval())
+
 
 })
