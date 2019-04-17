@@ -11,7 +11,8 @@ class StaticObject {
         object.style.position = "absolute"
         object.style.width =  `${this.width}px`
         object.style.left = `${window.innerWidth + 10}px`
-        object.style.bottom = `${this.height}px`
+        object.style.bottom = `${this.bottom}px`
+        object.style.height = `${this.height}px`
     }
 
     static scroll(){
@@ -26,7 +27,7 @@ class StaticObject {
         })
     }
 
-    randomHeight(){
+    randomVerticalPosition(){
         return (250*Math.random())+500
     }
 
