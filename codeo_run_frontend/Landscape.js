@@ -13,7 +13,6 @@ class Landscape  {
             return res.json()
         })
         .then(function(gameData){
-            console.log('I got some data back from the database!!!')
             console.log(gameData)
         })
     }
@@ -21,7 +20,6 @@ class Landscape  {
     static getPositions(character){
         let findAllObjects = document.querySelectorAll('.staticobject')
         let objectsList = []
-        let i = 1
         findAllObjects.forEach(function(object){
             objectsList.push({
                 "name": object.id,
@@ -30,7 +28,6 @@ class Landscape  {
                 "height": parseInt(object.style.height),
                 "width": parseInt(object.style.width)
             })
-            i++
         })
         let dataToSave = {
             "character":{
@@ -47,8 +44,6 @@ class Landscape  {
 
     static saveGame(character){
         let dataToSave = Landscape.getPositions(character)
-        console.log(dataToSave)
-
         fetch('http://localhost:3000/play', {
             method: 'POST',
             headers: {
@@ -62,7 +57,6 @@ class Landscape  {
             return res.json()
         })
         .then(function(saveResponse){
-            console.log('I saved data to the database!!!')
             console.log(saveResponse)
         })
     }
