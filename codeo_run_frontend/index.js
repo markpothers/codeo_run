@@ -45,8 +45,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 })
 
-
+  let scoreboard = new Counter(100, 100)
   let character = new PlayableCharacter("Mark")
+
   character.horizontal_move(horizontal_direction)
 
   document.addEventListener('keydown', function(e){
