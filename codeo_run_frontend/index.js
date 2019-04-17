@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
     character.direction = "stop"
     character.idle()
     }
-    Landscape.saveGame()
+    Landscape.saveGame(character)
   })
 
   document.addEventListener('keydown', function(e){

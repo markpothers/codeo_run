@@ -18,14 +18,44 @@ class Landscape  {
         })
     }
 
-    static saveGame(){
+    static getPositions(character){
+        let findAllObjects = document.querySelectorAll('.staticobject')
+        let objectsList = []
+        let i = 1
+        findAllObjects.forEach(function(object){
+            objectsList.push({
+                "name": object.id,
+                "x": parseInt(object.style.left),
+                "y": parseInt(object.style.bottom),
+                "height": parseInt(object.style.height),
+                "width": parseInt(object.style.width)
+            })
+            i++
+        })
+        let dataToSave = {
+            "character":{
+                "name": character.name,
+                "x": character.x,
+                "y": character.y,
+                "points": character.points,
+                "health": character.health
+            },
+            objectsList
+        }
+        return dataToSave
+    }
+
+    static saveGame(character){
+        let dataToSave = Landscape.getPositions(character)
+        console.log(dataToSave)
+
         fetch('http://localhost:3000/play', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-
+                dataToSave
             })
         })
         .then(function(res){

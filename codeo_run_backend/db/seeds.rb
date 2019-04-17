@@ -20,7 +20,7 @@ invulnarable = Item.new(name:"invulnarable", x:800 , y:200, points:250, health: 
 damage = Item.new(name:"damage", x:800 , y:200, points:-100, health:-30, special:"", landscape_id:1)
 
 
-platform1 = Platform.new(name:"platform1", x:800, y:200, landscape_id:1)
+platform1 = Platform.create(name:"platform1", x:800, y:200, landscape_id:1)
 platform2 = Platform.new(name:"platform2", x:800, y:200, landscape_id:1)
 platform3 = Platform.new(name:"platform3", x:800, y:200, landscape_id:1)
 platform4 = Platform.new(name:"platform4", x:800, y:200, landscape_id:1)
