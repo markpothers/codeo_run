@@ -64,7 +64,7 @@ function collisionTestMethod(platform){
     const pcHeight = 32
     console.log(pcPositions)
     
-    if((collisionDetection(pcPositions, pcWidth, pcHeight , renderPosition(platform))===true)){
+    if((collisionCheck(pcPositions, pcWidth, pcHeight , renderPosition(platform))===true)){
        
 
         console.log("collision occurred");
@@ -84,12 +84,64 @@ function collisionDetection(pcPositions, pcWidth, pcHeight, pPositions){
     var pcright = (pcPositions[0]) + (pcWidth);
     var pcbottom = pcPositions[1];
     var pctop= (pcPositions[1])  + (pcHeight);
-    var collision = false;
+    var collision = true;
 
-    if((pleft < pcright) && (pright > pcleft) && (pbottom < pctop) && (ptop > pcbottom)){
-        collision = true;
+    if(!((pleft < pcright) && (pright > pcleft) && (pbottom < pctop) && (ptop > pcbottom))){
+        collision = false;
     }
    
     return collision;
-    debugger
+    //debugger
+}
+
+function collisionCheck(pcPositions, pcWidth, pcHeight, pPositions){
+    //pcPositions, pcWidth, pcHeight, pPositions
+    let characterx = pcPositions[0]
+    let charactery = pcPositions[1]
+    let characterWidth = pcWidth
+    let characterHeight = pcHeight
+    let platformx = pPositions[0]
+    let platformy = pPositions[1]
+    let platformWidth = pPositions[2] - pPositions[0]
+    let platformHeight = pPositions[3] - pPositions[1]
+
+
+	var vectorX = (characterx + (characterWidth/2)) - (platformx + (platformWidth/2));
+	var vectorY = (charactery + (characterHeight/2)) - (platformy + (platformHeight/2));
+
+	var halfWidths = (characterWidth/2) + (platformWidth/2);
+	var halfHeights = (characterHeight/2) + (platformHeight/2);
+
+	var collisionDirection = null;
+
+	if(Math.abs(vectorX) < halfWidths && Math.abs(vectorY) < halfHeights){
+
+		var offsetX = halfWidths - Math.abs(vectorX);
+		var offsetY = halfHeights - Math.abs(vectorY);
+		if(offsetX < offsetY){
+
+			if (vectorX > 0){
+				collisionDirection = "collision occurred left";
+				characterx += offsetX;
+			} else {
+				collisionDirection = "collision occurred right";
+				characterx -= offsetX;
+			}
+
+		} else {
+
+			if (vectorY > 0){
+				collisionDirection = "collision occurred top";
+				charactery += offsetY;
+			} else {
+				collisionDirection = "collision occurred bottom";
+				charactery -= offsetY;
+			}
+
+		}
+
+	}
+
+	return collisionDirection;
+
 }
