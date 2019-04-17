@@ -14,10 +14,7 @@ class AnimatedObject {
     const can2 = document.querySelector('#foreground');
     const ctx2 = can2.getContext('2d');
 
-    console.log(this.direction, animationSet.direction)
     if(this.direction == animationSet.direction){
-
-      console.log('we made it')
 
     let cycleLoop = range(0, animationSet.frames);
     this.frameCount++;
@@ -27,7 +24,6 @@ class AnimatedObject {
       }
     this.frameCount = 0;
     ctx2.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    console.log(animationSet.yPos, this.x, this.y)
     this.drawFrame(cycleLoop[this.currentLoopIndex], animationSet.yPos, this.x, this.y);
     this.currentLoopIndex++;
     if(typeof callback == 'function') callback()
@@ -39,7 +35,6 @@ class AnimatedObject {
   }
 
   drawFrame(frameX, frameY, canvasX, canvasY) {
-    console.log(this.scaleFactor)
     this.context.drawImage(this.img, frameX * this.spritesheet.width, frameY * this.spritesheet.height, this.spritesheet.width, this.spritesheet.height,
     canvasX, canvasY, this.spritesheet.width * this.scaleFactor, this.spritesheet.height * this.scaleFactor);
   }

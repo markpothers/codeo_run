@@ -1,6 +1,6 @@
 class PlayableCharacter extends AnimatedObject{
 
-    constructor(name, x=660, y=220, points=0, health=100, life_time_points=0){
+    constructor(name, x=100, y=220, points=0, health=100, life_time_points=0){
 
         super(`./assets/mainChar/mainCharSheet.png`)
 
@@ -13,7 +13,6 @@ class PlayableCharacter extends AnimatedObject{
         this.vertical_speed = -20
         this.scaleFactor = 4
         this.direction = 'stop'
-        this.spawn()
 
 
         this.spritesheet = {
@@ -49,75 +48,30 @@ class PlayableCharacter extends AnimatedObject{
         }
     }
 
-    spawn(){
-        const character = document.createElement('img')
-        character.src = `./assets/Blocky/blocky.png`
-        let character_container = document.querySelector("#character_container")
-        character_container.append(character)
-        character.id="character"
-        character.style.position = "relative"
-        character.style.width = '75px'
-        character.style.left = '-785px'
-        character.style.bottom = '60px'
-    }
-
-    // horizontal_move(direction){
-    //     let character = document.querySelector('#character')
-    //     let left = parseInt(character.style.left)
-    //     let speed = 5
-    //         if(horizontal_direction === "left"){
-    //             //character.style.left = `${left - speed}px`
-    //             this.runLeft()
-    //         }
-    //         if(horizontal_direction === "right"){
-    //             //character.style.left = `${left + speed}px`
-    //             this.runRight()
-    //         }
-    //         if(horizontal_direction === "stop"){
-    //             //character.style.left = `${left}px`
-    //             this.idle()
-    //         }
-    // }
-
-    jump(){
-        console.log("I'm jumping!!!")
-            this.vertical_speed = 20
-            this.verticalMovement()
-        }
-
     verticalMovement(){
+        this.y -= this.vertical_speed
 
-        let x = parseInt(this.x)
-        let y = parseInt(this.y)
-        this.y = `${y - this.vertical_speed}px`
-
-        console.log("I'm falling.............")
-        let character = document.querySelector('#character')
-        let bottom = parseInt(character.style.bottom)
-            console.log(this.vertical_speed)
-            ctx2.clearRect(0, 0, can2.width, can2.height);
-            if(horizontal_direction == 'right'){
-            this.drawFrame(0, 0, x, y);} else{
-              this.drawFrame(0, 9, x, y);
-            }
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        if(this.direction == 'stop'){
+          this.drawFrame(0, 0, this.x, this.y);
+        } else if(this.direction == 'right' ){
+          this.x += 7
+          this.drawFrame(0, 0, this.x, this.y);
+        } else if(this.direction == 'left'){
+          this.x -= 7
+          this.drawFrame(0, 8, this.x, this.y);
+        }
     }
 
+    idle() {
+      this.animateObject(this.spritesheet.idle, 15)
+    }
 
-    // drawFrame(frameX, frameY, canvasX, canvasY) {
-    //   ctx2.drawImage(this.img, frameX * this.spritesheet.width, frameY * height, width, height,
-    //   canvasX, canvasY, width * 4, height * 4);
-    //   }
+    runLeft() {
+      this.animateObject(this.spritesheet.runLeft, 5, () => {this.x -= 30})
+    }
 
-
-      idle() {
-        this.animateObject(this.spritesheet.idle, 15)
-      }
-
-      runLeft() {
-        this.animateObject(this.spritesheet.runLeft, 5, () => {this.x -= 30})
-      }
-
-      runRight() {
-        this.animateObject(this.spritesheet.runRight, 5, () => {this.x += 30})
-      }
+    runRight() {
+      this.animateObject(this.spritesheet.runRight, 5, () => {this.x += 30})
+    }
 }

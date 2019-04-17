@@ -9,7 +9,6 @@ function range(start, end, step = 1) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  console.log(range(0, 12))
   const can = document.querySelector('#background');
   const ctx = can.getContext('2d');
   const can2 = document.querySelector('#foreground');
@@ -59,12 +58,10 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', function(e){
     if(e.repeat) return
   if(e.key == 'ArrowRight'){
-    console.log("right")
     character.direction = "right"
     character.runRight()
     }
     if(e.key == 'ArrowLeft'){
-      console.log("left")
       character.direction = "left"
       character.runLeft()
     }
@@ -72,7 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.addEventListener('keyup', function(e){
     if(e.key == 'ArrowRight'||e.key == 'ArrowLeft'){
-    console.log("stop")
     character.direction = "stop"
     character.idle()
     }
@@ -81,8 +77,8 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', function(e){
     if(e.repeat) return
     if(e.key == ' '){
-      vertical_direction = 'up'
-      character.jump()
+      character.vertical_speed = 20
+      character.verticalMovement()
     }
   })
 
@@ -107,12 +103,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   setInterval(function(){
     Platform.choosePlatform()
-    console.log(nextPlatformInterval())
   }, nextPlatformInterval())
 
   setInterval(function(){
     Item.pickRandomItem();
-    console.log(nextItemInterval())
   }, nextItemInterval())
 
 
