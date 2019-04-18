@@ -1,45 +1,36 @@
 class StaticObject {
 
-    spawn(){
-        const object = document.createElement('img')
-        object.src = this.src
-        let object_container = document.querySelector("#character_container")
-        object_container.append(object)
-        object.className="staticobject"
-        object.id = this.name
-        object.style.zIndex = 3
-        object.style.position = "absolute"
-        object.style.width =  `${this.width}px`
-        object.style.left = `${window.innerWidth + 10}px`
-        object.style.bottom = `${this.bottom}px`
-        object.style.height = `${this.height}px`
-        this.element = object
+    constructor(src){
+      this.img = document.createElement('img')
+      this.img.src = src
+      this.canvas = document.querySelector('#foreground');
+      this.context = this.canvas.getContext('2d');
+
+      StaticObject.all.push(this)
     }
 
-    static scroll(){
-        let objects = document.querySelectorAll('.staticobject')
-        objects.forEach(function(object){
-            let left = parseInt(object.style.left)
-            let speed = 1
-            object.style.left = `${left - speed}px`
-            if (parseInt(object.style.left)+parseInt(object.style.width)+100 < 0){
-                object.remove()
-            }
-            let positions = [];
-            
-            positions.push(parseInt(object.style.left)); 
-            positions.push(parseInt(object.style.bottom ));
-            positions.push(parseInt((object.style.left) + (object.style.width)));//right position in x axis
-            positions.push(parseInt((object.style.height)+ (object.style.bottom)));// top position in y axis
-           // console.log(positions)
-            return positions;//left, bottom, width, height
-            
-            
-        })
+    infiniteScroll(){
+      let imgWidth = 0;
+
+      const  scrollSpeed = 2;
+
+      this.img.addEventListener('load', () => {
+        const loop = () => {
+          this.context.clearRect(this.x + scrollSpeed, this.y, this.width, this.height);
+          this.context.drawImage(this.img, this.x, this.y, this.width, this.height);
+          this.x -= scrollSpeed;
+          if(this.x < -200){
+          return;
+          }
+          window.requestAnimationFrame(loop);
+      }
+        loop()
+      })
     }
 
     randomVerticalPosition(){
-        return 400//(250*Math.random())+200
+        return Math.random() * (150 - 75) + 75;
     }
 
 }
+StaticObject.all = []

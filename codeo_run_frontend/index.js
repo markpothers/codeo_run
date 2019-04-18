@@ -19,45 +19,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const ctx = can.getContext('2d');
   const can2 = document.querySelector('#foreground');
   const ctx2 = can.getContext('2d');
+  const can3 = document.querySelector('#platforms');
+  const ctx3 = can.getContext('2d');
 
 
   can.width = window.innerWidth;
   can.height = 400;
   can2.width = window.innerWidth;
   can2.height = 400;
+  can3.width = window.innerWidth;
+  can3.height = 400;
 
   splashScreen()
 
-  const bg = document.createElement('img')
-  bg.src = 'assets/desert_BG.png'
+  const bg = new Landscape('assets/desert_BG.png', 'bg')
+  bg.infiniteScroll()
 
-  let imgWidth = 0;
-
-  const  scrollSpeed = 2;
-
-
-  bg.addEventListener('load', () => {
-    const loop = () => {
-      let imgPos = imgWidth;
-
-
-      ctx.drawImage(bg, imgPos, 0);
-        while(imgPos < can.width) {
-          ctx.drawImage(bg, imgPos += bg.width, 0);
-        }
-      imgWidth -= scrollSpeed;
-      if (imgWidth <= -bg.width){
-        imgWidth = 0;}
-
-
-      window.requestAnimationFrame(loop);
-    }
-
-
-
-  loop()
-
-})
 
   let scoreboard = new Counter(100, 100)
   let character = new PlayableCharacter("Mark")
@@ -93,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
   setInterval(function(){
-    StaticObject.scroll()
+    //StaticObject.scroll()
     collisionCheckAllPlatforms()
     if (character.vertical_speed > -15) {
       character.vertical_speed -= 1.2
@@ -101,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if(parseInt(character.y) < 220){
       character.verticalMovement()
     }
-  }, 250)
+  }, 10)
 
 
   let nextPlatformInterval = function(){
@@ -112,13 +89,13 @@ document.addEventListener('DOMContentLoaded', () => {
     return ((Math.floor(Math.random() * 3000) + 500))  // 0.5 sec + 0 to 3 sec (i.e. 0.5 to 3.5 sec interval)
   }
 
- // setInterval(function(){
-    Platform.choosePlatform() 
-      // }, nextPlatformInterval())
+  setInterval(function(){
+    Platform.choosePlatform()
+       }, nextPlatformInterval())
 
-  // setInterval(function(){
-  //   Item.pickRandomItem();
-  // }, nextItemInterval())
+   setInterval(function(){
+     Item.pickRandomItem();
+   }, nextItemInterval())
 
-  
+
 })
