@@ -1,5 +1,5 @@
 class Item extends StaticObject {
-    constructor(name, src , width, height, itemXPos=(window.innerWidth + 10), itemYPos=(StaticObject.randomVerticalPosition()), health = 100, points = 100, special = ""){
+    constructor(name, src , width, height, health, points, special, itemXPos=(window.innerWidth + 10), itemYPos=(StaticObject.randomVerticalPosition())){
         super(src)
         this.name = name
         this.points = points;
@@ -16,7 +16,10 @@ class Item extends StaticObject {
         let names = ["coin1", "energydraw", "poison", "fuel", "batterydown"]
         let srcs = [`./assets/Item/coin1.png`,`./assets/Item/energydraw.png`,`./assets/Item/poison.png`,`./assets/Item/fuel.png`, `./assets/Item/batterydown.png`]
         let sizes = [50, 50, 50, 50, 50]
-        return new Item (names[choice], srcs[choice], sizes[choice], sizes[choice], itemXPos, itemYPos)
+        let healths = [0, 15, -20, 5, 0]
+        let points = [100, 25, 50, 15, 15]
+        let specials = ["", "", "slow", "speed", "no_jumping"]
+        return new Item (names[choice], srcs[choice], sizes[choice], sizes[choice], healths[choice], points[choice], specials[choice], itemXPos, itemYPos, )
     }
 
     static recreateItem(objectName, itemXPos, itemYPos){

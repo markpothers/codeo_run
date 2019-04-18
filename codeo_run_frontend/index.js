@@ -1,5 +1,9 @@
-let frameCount = 0;
-let vertical_direction = null
+window.addEventListener("keydown", function(e) {
+    // space and arrow keys
+    if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+        e.preventDefault();
+    }
+}, false);
 
 function range(start, end, step = 1) {
 
@@ -10,15 +14,19 @@ function range(start, end, step = 1) {
 
 document.addEventListener('DOMContentLoaded', () => {
   const can = document.querySelector('#background');
+  let object_container = document.querySelector("#character_container")
+  object_container.style.width = window.innerWidth
   const ctx = can.getContext('2d');
   const can2 = document.querySelector('#foreground');
   const ctx2 = can.getContext('2d');
 
 
-  can.width = window.innerWidth -20;
+  can.width = window.innerWidth;
   can.height = 400;
-  can2.width = window.innerWidth -20;
+  can2.width = window.innerWidth;
   can2.height = 400;
+
+  splashScreen()
 
   const bg = document.createElement('img')
   bg.src = 'assets/desert_BG.png'
@@ -106,6 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setInterval(function(){
       StaticObject.scroll()
+      collisionCheckAllPlatforms()
       if (character.vertical_speed > -15) {
         character.vertical_speed -= 1.2
       }
@@ -133,5 +142,6 @@ document.addEventListener('DOMContentLoaded', () => {
       Item.createItem(choice);
     }, nextItemInterval())
   })
+
 
 })
