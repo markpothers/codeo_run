@@ -25,10 +25,8 @@ class Landscape extends AnimatedObject  {
     }
 
     static getPositions(character){
-        let findAllObjects = StaticObject.all
-        console.log(findAllObjects[0].x)
         let objectsList = []
-        findAllObjects.forEach(function(object){
+        StaticObject.all.forEach(function(object){
             objectsList.push({
                 "name": object.name,
                 "x": object.x,

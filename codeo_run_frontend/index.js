@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       let timeoutID = setTimeout(function(){
                         Landscape.saveGame(character)
-                      }, 1000)
+                      }, 2000)
       document.addEventListener('keydown', function(e){
         if(e.key == 'ArrowRight'||e.key == 'ArrowLeft'||e.key == ' '){
           clearTimeout(timeoutID)
