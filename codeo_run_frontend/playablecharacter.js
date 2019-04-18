@@ -11,6 +11,7 @@ class PlayableCharacter extends AnimatedObject{
         this.health = health
         this.life_time_points = life_time_points
         this.vertical_speed = -20
+        this.jumpLimit = 1
         Counter.changeScore(this.points)
         Counter.changeHealth(this.health)
         allPcs.push(this)

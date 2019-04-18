@@ -1,5 +1,9 @@
-let frameCount = 0;
-let vertical_direction = null
+window.addEventListener("keydown", function(e) {
+    // space and arrow keys
+    if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+        e.preventDefault();
+    }
+}, false);
 
 function range(start, end, step = 1) {
 
@@ -15,10 +19,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const ctx2 = can.getContext('2d');
 
 
-  can.width = window.innerWidth -20;
+  can.width = window.innerWidth;
   can.height = 400;
-  can2.width = window.innerWidth -20;
+  can2.width = window.innerWidth;
   can2.height = 400;
+
+  splashScreen()
 
   const bg = document.createElement('img')
   bg.src = 'assets/desert_BG.png'
@@ -79,6 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if(e.repeat) return
     if(e.key == ' '){
       character.vertical_speed = 20
+
       character.verticalMovement()
     }
   })
