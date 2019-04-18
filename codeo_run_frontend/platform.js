@@ -1,14 +1,17 @@
 //please dont remove the comments . We can finalise, decide and then remove them all during refractor
 class Platform extends StaticObject {
 
-    constructor(name, src, width, height){
-        super()
+    constructor(name, img, width, height){
+        super(img)
         this.name = name
-        this.src = src
+        this.canvas = document.querySelector('#platforms');
+        this.context = this.canvas.getContext('2d');
+        this.x = this.canvas.width
+        this.y = this.randomVerticalPosition()
         this.width = width
         this.height = height
         this.bottom = this.randomVerticalPosition()
-        this.spawn()
+        this.infiniteScroll()
         allPlatforms.push(this)
         //Not sure whether the following function will be effective if we call here.Pls dont remove the comment, until we confirm
         //collisionTestMethod(this);
@@ -22,43 +25,42 @@ class Platform extends StaticObject {
         let heights = [45, 45, 80, 80, 80]
         let choice = (Math.floor(Math.random() * names.length))
         let newPlatform = new Platform(names[choice], srcs[choice], widths[choice], heights[choice]);
-        allPlatforms.push(newPlatform)
         return newPlatform;
     }
-    
+
     //lets write a method here to update the game element based on the collision
 
     //lets write a method to discard or delete the platforms that goes offscreen
-    
+
     }
 
 
 
 function renderPosition(platform){
-   
+
     let positions = []
-    positions.push(parseInt(platform.element.style.left))
+    positions.push(parseInt(platform.img.style.left))
     positions.push(parseInt(platform.bottom))
-    positions.push(parseFloat(platform.width) + parseFloat(platform.element.style.left)) //right
+    positions.push(parseFloat(platform.width) + parseFloat(platform.img.style.left)) //right
     positions.push(parseFloat(platform.bottom) + parseFloat(platform.height)) //top
     return positions;
 }
 
 //the following is just a method to test whether our colloisionDetection mechanism works properly
-       
+
 function collisionTestMethod(platform){
     const playableCharacter = allPcs[0]
     const pc = playableCharacter.element
-    
+
     const pcPositions = playableCharacter.pcPositions
-    
+
     const pcWidth = 32
     const pcHeight = 32
 
     //first technique of collision detection can be implemented by the following if statement.
     //check which of collisionDetection and collisionCheck methods work and implement accordingly
     // if((collisionCheck(pcPositions, pcWidth, pcHeight , renderPosition(platform))===true)){
-    //     console.log("collision occurred");   
+    //     console.log("collision occurred");
     //     //debugger
     // }
 
@@ -71,7 +73,7 @@ function collisionDetection(pcPositions, pcWidth, pcHeight, pPositions){
     var pleft = pPositions[0];
     //pPositions -> platform->left, bottom ,right, top
     //pcPositions -> playableCharacter ->left, bottom
-    
+
     var pright =  (pPositions[2]);//platform's left + platform's width
     var ptop = pPositions[1]; //platform's top (y)
     var pbottom =  pPositions[3]; //platform's bottom + (platform.height)
@@ -94,8 +96,8 @@ function collisionDetection(pcPositions, pcWidth, pcHeight, pPositions){
     }
     if(((pleft < pcright) && (pright > pcleft) && (pbottom < pctop) && (ptop > pcbottom))){
         	collision = true;
-    }	    
-   
+    }
+
     return collision;
     //debugger
 }
@@ -158,7 +160,7 @@ const allPlatforms = [];
 //collision check for all of the platforms
 function collisionCheckAllPlatforms(){
 for(let i = 0; i< allPlatforms.length; i++){
-    
+
     collisionTestMethod(allPlatforms[i]);
 }
 }

@@ -4,8 +4,8 @@ class Landscape extends AnimatedObject  {
         this.name = name;
         this.canvas = document.querySelector("#background");
         this.context = this.canvas.getContext('2d');
-        //this.x = x;
-        //this.y = y;
+        this.x = 0
+        this.y = 0
     }
 
     static loadGame(){

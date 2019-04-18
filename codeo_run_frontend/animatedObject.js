@@ -32,19 +32,19 @@ class AnimatedObject {
     }
   }
 
-  scroll(){
+  infiniteScroll(){
     let imgWidth = 0;
 
     const  scrollSpeed = 2;
 
     this.img.addEventListener('load', () => {
       const loop = () => {
-        let imgPos = imgWidth;
+        this.x = imgWidth;
 
 
-        this.context.drawImage(this.img, imgPos, 0);
-          while(imgPos < this.canvas.width) {
-            this.context.drawImage(this.img, imgPos += this.img.width, 0);
+        this.context.drawImage(this.img, this.x, this.y);
+          while(this.x < this.canvas.width) {
+            this.context.drawImage(this.img, this.x += this.img.width, 0);
           }
         imgWidth -= scrollSpeed;
         if (imgWidth <= -this.img.width){

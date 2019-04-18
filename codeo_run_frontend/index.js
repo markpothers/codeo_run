@@ -19,17 +19,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const ctx = can.getContext('2d');
   const can2 = document.querySelector('#foreground');
   const ctx2 = can.getContext('2d');
+  const can3 = document.querySelector('#platforms');
+  const ctx3 = can.getContext('2d');
 
 
   can.width = window.innerWidth;
   can.height = 400;
   can2.width = window.innerWidth;
   can2.height = 400;
+  can3.width = window.innerWidth;
+  can3.height = 400;
 
   splashScreen()
 
   const bg = new Landscape('assets/desert_BG.png', 'bg')
-  bg.scroll()
+  bg.infiniteScroll()
 
 
   let scoreboard = new Counter(100, 100)
@@ -66,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
   setInterval(function(){
-    StaticObject.scroll()
+    //StaticObject.scroll()
     collisionCheckAllPlatforms()
     if (character.vertical_speed > -15) {
       character.vertical_speed -= 1.2
