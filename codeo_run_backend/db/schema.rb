@@ -62,6 +62,8 @@ ActiveRecord::Schema.define(version: 2019_04_15_184939) do
     t.integer "health"
     t.integer "points"
     t.integer "special"
+    t.integer "x"
+    t.integer "y"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -3,9 +3,8 @@ class StaticObject {
     constructor(src){
       this.img = document.createElement('img')
       this.img.src = src
-      this.canvas = document.querySelector('#foreground');
-      this.context = this.canvas.getContext('2d');
-
+      this.canvas = document.querySelector('#foreground')
+      this.context = this.canvas.getContext('2d')
       StaticObject.all.push(this)
     }
 
@@ -29,7 +28,7 @@ class StaticObject {
       })
     }
 
-    randomVerticalPosition(){
+    static randomVerticalPosition(){
         return Math.random() * (150 - 75) + 75;
     }
 

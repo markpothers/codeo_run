@@ -9,7 +9,7 @@ class LandscapesController < ApplicationController
         Platform.destroy_all
         landscape = Landscape.all[0]
         character = game_params["dataToSave"]["character"]
-        newCharacter = PlayableCharacter.create(name: character["name"], points:character["points"], health:character["health"])
+        newCharacter = PlayableCharacter.create(name: character["name"], points:character["points"], health:character["health"], x:character["x"], y:character["y"])
         objects = game_params["dataToSave"]["objectsList"]
         objects.each do |object|
             Platform.create(name: object["name"], x: object["x"], y: object["y"], landscape: landscape)

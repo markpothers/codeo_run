@@ -9,25 +9,30 @@ class Landscape extends AnimatedObject  {
     }
 
     static loadGame(){
-        fetch('http://localhost:3000/play')
+        let loadedObjects = []
+        return fetch('http://localhost:3000/play')
         .then(function(res){
             return res.json()
         })
         .then(function(gameData){
-            console.log(gameData)
+            loadedObjects.push(gameData[0][0])
+            loadedObjects.push([])
+            gameData[1].forEach(function(object){
+                loadedObjects[1].push(object)
+            })
+        return loadedObjects
         })
     }
 
     static getPositions(character){
-        let findAllObjects = document.querySelectorAll('.staticobject')
         let objectsList = []
-        findAllObjects.forEach(function(object){
+        StaticObject.all.forEach(function(object){
             objectsList.push({
-                "name": object.id,
-                "x": parseInt(object.style.left),
-                "y": parseInt(object.style.bottom),
-                "height": parseInt(object.style.height),
-                "width": parseInt(object.style.width)
+                "name": object.name,
+                "x": object.x,
+                "y": object.y,
+                "height": object.height,
+                "width": object.width
             })
         })
         let dataToSave = {
@@ -58,7 +63,7 @@ class Landscape extends AnimatedObject  {
             return res.json()
         })
         .then(function(saveResponse){
-            console.log(saveResponse)
+            //console.log(saveResponse)
         })
     }
 

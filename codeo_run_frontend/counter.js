@@ -16,7 +16,7 @@ class Counter {
         // counter_container.borderStyle ='solid'
         // counter_container.borderWidth = '2px'
         counter_container.style.left = `20px`
-        counter_container.style.bottom = `767px`
+        counter_container.style.bottom = `675px`
         counter_container.style.transform = "rotate(-5deg)"
 
         const healthBox = document.createElement('img')
@@ -68,11 +68,11 @@ class Counter {
         const score = document.createElement('h4')
         score.id = "score"
         counter_container.append(score)
-        score.innerText = "23518"
+        score.innerText = "0"
         score.style.position = "absolute"
         score.style.zIndex = 5
         score.style.left = `30px`
-        score.style.bottom = `-22px`
+        score.style.bottom = `3px`
         score.style.width = "150px"
         score.style.fontFamily = "Brush Script MT"
         score.style.fontSize = "25px"
