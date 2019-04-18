@@ -14,7 +14,7 @@ class Landscape extends AnimatedObject  {
             return res.json()
         })
         .then(function(gameData){
-            console.log(gameData)
+            //console.log(gameData)
         })
     }
 
@@ -58,7 +58,7 @@ class Landscape extends AnimatedObject  {
             return res.json()
         })
         .then(function(saveResponse){
-            console.log(saveResponse)
+            //console.log(saveResponse)
         })
     }
 

@@ -89,13 +89,13 @@ document.addEventListener('DOMContentLoaded', () => {
     return ((Math.floor(Math.random() * 3000) + 500))  // 0.5 sec + 0 to 3 sec (i.e. 0.5 to 3.5 sec interval)
   }
 
-  setInterval(function(){
+  //setInterval(function(){
     Platform.choosePlatform()
-       }, nextPlatformInterval())
+   //    }, nextPlatformInterval())
 
-   setInterval(function(){
-     Item.pickRandomItem();
-   }, nextItemInterval())
+  //  setInterval(function(){
+  //    Item.pickRandomItem();
+  //  }, nextItemInterval())
 
 
 })

@@ -29,7 +29,7 @@ class StaticObject {
     }
 
     randomVerticalPosition(){
-        return Math.random() * (150 - 75) + 75;
+        return 320 //Math.random() * (150 - 75) + 75;
     }
 
 }
