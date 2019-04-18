@@ -7,7 +7,8 @@ class PlayableCharacter extends AnimatedObject{
         this.name = name
         this.x = x
         this.y = y
-        this.canvas = document.createElement()
+        this.canvas = document.querySelector('#foreground');
+        this.context = this.canvas.getContext('2d');
         this.points = points
         this.health = health
         this.life_time_points = life_time_points
@@ -16,7 +17,6 @@ class PlayableCharacter extends AnimatedObject{
         Counter.changeScore(this.points)
         Counter.changeHealth(this.health)
         allPcs.push(this)
-        this.element = this
         this.pcPositions = pcPositions;
 
         this.scaleFactor = 4

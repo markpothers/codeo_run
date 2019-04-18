@@ -6,8 +6,6 @@ class AnimatedObject {
     this.img.src = img
     this.frameCount = 0
     this.currentLoopIndex = 0
-    this.canvas = document.querySelector('#foreground');
-    this.context = this.canvas.getContext('2d');
   }
 
   animateObject(animationSet, desiredFrameCount, callback){
@@ -23,7 +21,7 @@ class AnimatedObject {
         return;
       }
     this.frameCount = 0;
-    ctx2.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.drawFrame(cycleLoop[this.currentLoopIndex], animationSet.yPos, this.x, this.y);
     this.currentLoopIndex++;
     if(typeof callback == 'function') callback()
@@ -35,7 +33,28 @@ class AnimatedObject {
   }
 
   scroll(){
-    
+    let imgWidth = 0;
+
+    const  scrollSpeed = 2;
+
+    this.img.addEventListener('load', () => {
+      const loop = () => {
+        let imgPos = imgWidth;
+
+
+        this.context.drawImage(this.img, imgPos, 0);
+          while(imgPos < this.canvas.width) {
+            this.context.drawImage(this.img, imgPos += this.img.width, 0);
+          }
+        imgWidth -= scrollSpeed;
+        if (imgWidth <= -this.img.width){
+          imgWidth = 0;}
+
+
+        window.requestAnimationFrame(loop);
+      }
+      loop()
+    })
   }
 
   drawFrame(frameX, frameY, canvasX, canvasY) {

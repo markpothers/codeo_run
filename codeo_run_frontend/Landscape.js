@@ -1,11 +1,11 @@
-
-
 class Landscape extends AnimatedObject  {
-    constructor(img, name, x, y){
+    constructor(img, name){
         super(img)
         this.name = name;
-        this.x = x;
-        this.y = y;
+        this.canvas = document.querySelector("#background");
+        this.context = this.canvas.getContext('2d');
+        //this.x = x;
+        //this.y = y;
     }
 
     static loadGame(){

@@ -28,36 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   splashScreen()
 
-  const bg = document.createElement('img')
-  bg.src = 'assets/desert_BG.png'
+  const bg = new Landscape('assets/desert_BG.png', 'bg')
+  bg.scroll()
 
-  let imgWidth = 0;
-
-  const  scrollSpeed = 2;
-
-
-  bg.addEventListener('load', () => {
-    const loop = () => {
-      let imgPos = imgWidth;
-
-
-      ctx.drawImage(bg, imgPos, 0);
-        while(imgPos < can.width) {
-          ctx.drawImage(bg, imgPos += bg.width, 0);
-        }
-      imgWidth -= scrollSpeed;
-      if (imgWidth <= -bg.width){
-        imgWidth = 0;}
-
-
-      window.requestAnimationFrame(loop);
-    }
-
-
-
-  loop()
-
-})
 
   let scoreboard = new Counter(100, 100)
   let character = new PlayableCharacter("Mark")
@@ -101,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if(parseInt(character.y) < 220){
       character.verticalMovement()
     }
-  }, 250)
+  }, 10)
 
 
   let nextPlatformInterval = function(){
@@ -112,13 +85,13 @@ document.addEventListener('DOMContentLoaded', () => {
     return ((Math.floor(Math.random() * 3000) + 500))  // 0.5 sec + 0 to 3 sec (i.e. 0.5 to 3.5 sec interval)
   }
 
- // setInterval(function(){
-    Platform.choosePlatform() 
-      // }, nextPlatformInterval())
+  setInterval(function(){
+    Platform.choosePlatform()
+       }, nextPlatformInterval())
 
-  // setInterval(function(){
-  //   Item.pickRandomItem();
-  // }, nextItemInterval())
+   setInterval(function(){
+     Item.pickRandomItem();
+   }, nextItemInterval())
 
-  
+
 })
