@@ -1,6 +1,4 @@
-
-
-class Landscape  {
+ class Landscape  {
     constructor(name, x, y){
         this.name = name;
         this.x = x;
@@ -8,12 +6,18 @@ class Landscape  {
     }
 
     static loadGame(){
-        fetch('http://localhost:3000/play')
+        let loadedObjects = []
+        return fetch('http://localhost:3000/play')
         .then(function(res){
             return res.json()
         })
         .then(function(gameData){
-            console.log(gameData)
+            loadedObjects.push(gameData[0][0])
+            loadedObjects.push([])
+            gameData[1].forEach(function(object){
+                loadedObjects[1].push(object)
+            })
+        return loadedObjects
         })
     }
 

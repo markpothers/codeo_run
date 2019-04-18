@@ -1,32 +1,49 @@
 class Platform extends StaticObject {
 
-    constructor(name, src, width, height){
-        super()
+    constructor(name, src, width, height, x=(window.innerWidth + 10), y=(StaticObject.randomVerticalPosition())){
+        super(src)
         this.name = name
-        this.src = src
         this.width = width
         this.height = height
-        this.bottom = this.randomVerticalPosition()
+        this.left = x
+        this.bottom = y
         this.spawn()
         allPlatforms.push(this)
         
         collisionTestMethod(this);
     }
 
-    static choosePlatform(){
-
+    static createPlatform(choice, platformXPos, platformYPos){
         let names = ['log', 'grass', 'ladderbar', 'floating_rock', 'ladder']
         let srcs = [`./assets/Platforms/log.png`, `./assets/Platforms/grass.png`, `./assets/Platforms/ladderbar.png`, `./assets/Platforms/floating_rock.png`, `./assets/Platforms/ladder.png` ]
         let widths = [250, 100, 200, 120, 75]
         let heights = [45, 45, 80, 80, 80]
-        let choice = (Math.floor(Math.random() * names.length))
-        let newPlatform = new Platform(names[choice], srcs[choice], widths[choice], heights[choice]);
+        let newPlatform = new Platform(names[choice], srcs[choice], widths[choice], heights[choice], platformXPos, platformYPos);
         allPlatforms.push(newPlatform)
         return newPlatform;
     }
-     
-    
-    
+
+    static recreatePlatform(objectName, platformXPos, platformYPos){
+        switch(objectName) {
+            case 'log':
+                Platform.createPlatform(0, platformXPos, platformYPos)
+                break
+            case 'grass':
+                Platform.createPlatform(1, platformXPos, platformYPos)
+                break
+            case 'ladderbar':
+                Platform.createPlatform(2, platformXPos, platformYPos)
+                break
+            case 'floating_rock':
+                Platform.createPlatform(3, platformXPos, platformYPos)
+                break
+            case 'ladder':
+                Platform.createPlatform(4, platformXPos, platformYPos)
+                break
+        }
+    }
+
+
     //lets write a method here to update the game element based on the collision
 
     
@@ -62,7 +79,7 @@ function collisionTestMethod(platform){
     
     const pcWidth = 32
     const pcHeight = 32
-    console.log(pcPositions)
+    // console.log(pcPositions)
     
     if((collisionDetection(pcPositions, pcWidth, pcHeight , renderPosition(platform))===true)){
        

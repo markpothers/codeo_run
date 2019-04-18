@@ -68,7 +68,7 @@ class Counter {
         const score = document.createElement('h4')
         score.id = "score"
         counter_container.append(score)
-        score.innerText = "23518"
+        score.innerText = "0"
         score.style.position = "absolute"
         score.style.zIndex = 5
         score.style.left = `30px`

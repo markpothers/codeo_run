@@ -1,6 +1,6 @@
 class PlayableCharacter extends AnimatedObject{
 
-    constructor(name, x=100, y=220, points=0, health=100, life_time_points=0, pcPositions = []){
+    constructor(name, health=100, points=0, x=100, y=220,  life_time_points=0, pcPositions = []){
 
         super(`./assets/mainChar/mainCharSheet.png`)
 

@@ -1,19 +1,22 @@
 class StaticObject {
 
+    constructor(src){
+        this.img = document.createElement('img')
+        this.img.src = src
+    }
+
     spawn(){
-        const object = document.createElement('img')
-        object.src = this.src
         let object_container = document.querySelector("#character_container")
-        object_container.append(object)
-        object.className="staticobject"
-        object.id = this.name
-        object.style.zIndex = 3
-        object.style.position = "absolute"
-        object.style.width =  `${this.width}px`
-        object.style.left = `${window.innerWidth + 10}px`
-        object.style.bottom = `${this.bottom}px`
-        object.style.height = `${this.height}px`
-        this.element = object
+        object_container.append(this.img)
+        this.img.className="staticobject"
+        this.img.id = this.name
+        this.img.style.zIndex = 3
+        this.img.style.position = "absolute"
+        this.img.style.width =  `${this.width}px`
+        this.img.style.left = `${this.left}px`
+        this.img.style.bottom = `${this.bottom}px`
+        this.img.style.height = `${this.height}px`
+        this.element = this.img
     }
 
     static scroll(){
@@ -26,19 +29,19 @@ class StaticObject {
                 object.remove()
             }
             let positions = [];
-            
-            positions.push(parseInt(object.style.left)); 
+
+            positions.push(parseInt(object.style.left));
             positions.push(parseInt(object.style.bottom ));
             positions.push(parseInt((object.style.left) + (object.style.width)));//right position in x axis
             positions.push(parseInt((object.style.height)+ (object.style.bottom)));// top position in y axis
            // console.log(positions)
             return positions;//left, bottom, width, height
-            
-            
+
+
         })
     }
 
-    randomVerticalPosition(){
+    static randomVerticalPosition(){
         return (250*Math.random())+500
     }
 
