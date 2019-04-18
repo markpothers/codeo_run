@@ -6,6 +6,7 @@ class Platform extends StaticObject {
         this.name = name
         this.width = width
         this.height = height
+
         if (platformXPos == false){
             this.x = this.canvas.width
         } else {
@@ -15,6 +16,7 @@ class Platform extends StaticObject {
         this.canvas = document.querySelector('#platforms');
         this.context = this.canvas.getContext('2d');
         this.bottom = this.y + this.height
+
 
         this.infiniteScroll()
         allPlatforms.push(this)
