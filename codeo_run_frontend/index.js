@@ -78,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
     character.direction = "stop"
     character.idle()
     }
+    Landscape.saveGame(character)
   })
 
   document.addEventListener('keydown', function(e){
@@ -109,8 +110,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   setInterval(function(){
-    Platform.choosePlatform()
-  }, nextPlatformInterval())
+    Platform.choosePlatform() 
+       }, nextPlatformInterval())
 
   setInterval(function(){
     Item.pickRandomItem();

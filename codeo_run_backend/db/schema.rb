@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2019_04_15_184939) do
   create_table "landscapes", force: :cascade do |t|
     t.string "name"
     t.integer "x"
+    t.integer "y"
     t.integer "character_x"
     t.integer "character_y"
     t.integer "character_id"
@@ -60,7 +61,7 @@ ActiveRecord::Schema.define(version: 2019_04_15_184939) do
     t.string "name"
     t.integer "health"
     t.integer "points"
-    t.integer "life_time_points"
+    t.integer "special"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

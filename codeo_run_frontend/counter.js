@@ -10,7 +10,7 @@ class Counter {
         let counter_container = document.createElement('div')
         counter_container.id="counter_container"
         counter_container.style.position = "absolute"
-        // counter_container.style.zIndex = 3
+        counter_container.style.zIndex = 5
         let object_container = document.querySelector("#character_container")
         object_container.append(counter_container)
         // counter_container.borderStyle ='solid'

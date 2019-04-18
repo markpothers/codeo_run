@@ -4,7 +4,7 @@ class CreatePlayableCharacters < ActiveRecord::Migration[5.2]
       t.string :name
       t.integer :health
       t.integer :points
-      t.integer :life_time_points
+      t.integer :special
 
       t.timestamps
     end
