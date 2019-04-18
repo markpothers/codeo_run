@@ -1,14 +1,20 @@
 //please dont remove the comments . We can finalise, decide and then remove them all during refractor
 class Platform extends StaticObject {
 
-    constructor(name, src, width, height, x=(window.innerWidth + 10), y=(StaticObject.randomVerticalPosition())){
+    constructor(name, src, width, height, platformXPos=false, platformYPos=(StaticObject.randomVerticalPosition())){
         super(src)
         this.name = name
         this.width = width
         this.height = height
-        this.left = x
-        this.bottom = y
-        this.spawn()
+        if (platformXPos == false){
+            this.x = this.canvas.width
+        } else {
+            this.x = platformXPos
+        }
+        this.y = platformYPos
+        this.canvas = document.querySelector('#platforms');
+        this.context = this.canvas.getContext('2d');
+        this.infiniteScroll()
         allPlatforms.push(this)
         //Not sure whether the following function will be effective if we call here.Pls dont remove the comment, until we confirm
         //collisionTestMethod(this);
@@ -52,77 +58,71 @@ class Platform extends StaticObject {
 
 
 
-    function renderPosition(platform){
+function renderPosition(platform){
 
-        let positions = []
-        positions.push(parseInt(platform.element.style.left))
-        positions.push(parseInt(platform.bottom))
-        positions.push(parseFloat(platform.width) + parseFloat(platform.element.style.left)) //right
-        positions.push(parseFloat(platform.bottom) + parseFloat(platform.height)) //top
-        return positions;
-    }
+    let positions = []
+    positions.push(parseInt(platform.img.style.left))
+    positions.push(parseInt(platform.bottom))
+    positions.push(parseFloat(platform.width) + parseFloat(platform.img.style.left)) //right
+    positions.push(parseFloat(platform.bottom) + parseFloat(platform.height)) //top
+    return positions;
+}
 
 //the following is just a method to test whether our colloisionDetection mechanism works properly
 
-    function collisionTestMethod(platform){
-        const playableCharacter = allPcs[0]
-        const pc = playableCharacter.element
+function collisionTestMethod(platform){
+    const playableCharacter = allPcs[0]
+    const pc = playableCharacter.element
 
-        const pcPositions = playableCharacter.pcPositions
+    const pcPositions = playableCharacter.pcPositions
 
-        const pcWidth = 32
-        const pcHeight = 32
-        // console.log(pcPositions)
+    const pcWidth = 32
+    const pcHeight = 32
 
-        if((collisionDetection(pcPositions, pcWidth, pcHeight , renderPosition(platform))===true)){
+    //first technique of collision detection can be implemented by the following if statement.
+    //check which of collisionDetection and collisionCheck methods work and implement accordingly
+    // if((collisionCheck(pcPositions, pcWidth, pcHeight , renderPosition(platform))===true)){
+    //     console.log("collision occurred");
+    //     //debugger
+    // }
 
-
-        //first technique of collision detection can be implemented by the following if statement.
-        //check which of collisionDetection and collisionCheck methods work and implement accordingly
-        // if((collisionCheck(pcPositions, pcWidth, pcHeight , renderPosition(platform))===true)){
-        //     console.log("collision occurred");
-        //     //debugger
-        // }
-
-            if((collisionDetection(pcPositions, pcWidth, pcHeight , renderPosition(platform))===true)){
-                console.log("collision occurred");
-                //debugger
-            }
-        }
-    }
-
-    function collisionDetection(pcPositions, pcWidth, pcHeight, pPositions){
-        var pleft = pPositions[0];
-        //pPositions -> platform->left, bottom ,right, top
-        //pcPositions -> playableCharacter ->left, bottom
-        
-        var pright =  (pPositions[2]);//platform's left + platform's width
-        var ptop = pPositions[1]; //platform's top (y)
-        var pbottom =  pPositions[3]; //platform's bottom + (platform.height)
-        var pcleft = pcPositions[0];
-        var pcright = (pcPositions[0]) + (pcWidth);
-        var pctop = 400 - pcPositions[1]; // character to top of canvas
-        var pcbottom= pctop - pcHeight;
-        var collision = false;
-
-        //if the following collision detection doesnt work , lets check the other way round . The second if statement from now
-        // if(((pright <= pcleft) || (pleft > pcright) || (pbottom <= pctop) || (ptop > pcbottom))){
-        //     collision = true;
-        // }
-        if(window.testing){
-
-            console.log('Platform: ')
-            console.log('left: ', pleft, 'right: ', pright, 'top: ', ptop, 'bottom: ', pbottom, )
-            console.log('Character: ')
-            console.log('left: ', pcleft, 'right: ', pcright, 'topc: ', pctop, 'bottom: ', pcbottom, )
-        }
-        if(((pleft < pcright) && (pright > pcleft) && (pbottom < pctop) && (ptop > pcbottom))){
-                collision = true;
-        }	    
-    
-        return collision;
+    if((collisionDetection(pcPositions, pcWidth, pcHeight , renderPosition(platform))===true)){
+        console.log("collision occurred");
         //debugger
     }
+}
+function collisionDetection(pcPositions, pcWidth, pcHeight, pPositions){
+    var pleft = pPositions[0];
+    //pPositions -> platform->left, bottom ,right, top
+    //pcPositions -> playableCharacter ->left, bottom
+
+    var pright =  (pPositions[2]);//platform's left + platform's width
+    var ptop = pPositions[1]; //platform's top (y)
+    var pbottom =  pPositions[3]; //platform's bottom + (platform.height)
+    var pcleft = pcPositions[0];
+    var pcright = (pcPositions[0]) + (pcWidth);
+    var pctop = 400 - pcPositions[1]; // character to top of canvas
+    var pcbottom= pctop - pcHeight;
+    var collision = false;
+
+    //if the following collision detection doesnt work , lets check the other way round . The second if statement from now
+    // if(((pright <= pcleft) || (pleft > pcright) || (pbottom <= pctop) || (ptop > pcbottom))){
+    //     collision = true;
+    // }
+    if(window.testing){
+
+        console.log('Platform: ')
+        console.log('left: ', pleft, 'right: ', pright, 'top: ', ptop, 'bottom: ', pbottom, )
+        console.log('Character: ')
+        console.log('left: ', pcleft, 'right: ', pcright, 'topc: ', pctop, 'bottom: ', pcbottom, )
+    }
+    if(((pleft < pcright) && (pright > pcleft) && (pbottom < pctop) && (ptop > pcbottom))){
+        	collision = true;
+    }
+
+    return collision;
+    //debugger
+}
 
     //The second technique followed to detect collision . Lets see which technique works the best and implement
     function collisionCheck(pcPositions, pcWidth, pcHeight, pPositions){
@@ -179,10 +179,9 @@ class Platform extends StaticObject {
 
 const allPlatforms = [];
 
-    //collision check for all of the platforms
-    function collisionCheckAllPlatforms(){
-        for(let i = 0; i< allPlatforms.length; i++){
-
-            collisionTestMethod(allPlatforms[i]);
-        }
-    }
+//collision check for all of the platforms
+function collisionCheckAllPlatforms(){
+for(platform of allPlatforms){
+    collisionTestMethod(platform);
+  }
+}

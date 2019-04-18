@@ -1,15 +1,21 @@
 class Item extends StaticObject {
-    constructor(name, src , width, height, health, points, special, itemXPos=(window.innerWidth + 10), itemYPos=(StaticObject.randomVerticalPosition())){
+
+    constructor(name, src , width, height, health, points, special, itemXPos=false, itemYPos=(StaticObject.randomVerticalPosition())){
         super(src)
         this.name = name
-        this.points = points;
-        this.special = special;
-        this.health = health;
+        this.points = points
+        this.special = special
+        this.health = health
         this.width = width
-        this.left = itemXPos
+        if (itemXPos == false){
+            this.x = this.canvas.width
+        } else {
+            this.x = itemXPos
+        }
+        this.y = itemYPos
         this.height = height
-        this.bottom = itemYPos
-        this.spawn()
+        this.infiniteScroll()
+        //this.spawn()
     }
 
     static createItem(choice, itemXPos, itemYPos){
@@ -19,7 +25,7 @@ class Item extends StaticObject {
         let healths = [0, 15, -20, 5, 0]
         let points = [100, 25, 50, 15, 15]
         let specials = ["", "", "slow", "speed", "no_jumping"]
-        return new Item (names[choice], srcs[choice], sizes[choice], sizes[choice], healths[choice], points[choice], specials[choice], itemXPos, itemYPos, )
+        return new Item (names[choice], srcs[choice], sizes[choice], sizes[choice], healths[choice], points[choice], specials[choice], itemXPos, itemYPos)
     }
 
     static recreateItem(objectName, itemXPos, itemYPos){
@@ -41,4 +47,5 @@ class Item extends StaticObject {
                 break
         }
     }
+
 }
