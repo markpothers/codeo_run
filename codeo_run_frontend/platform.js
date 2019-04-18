@@ -159,8 +159,7 @@ const allPlatforms = [];
 
 //collision check for all of the platforms
 function collisionCheckAllPlatforms(){
-for(let i = 0; i< allPlatforms.length; i++){
-
-    collisionTestMethod(allPlatforms[i]);
-}
+for(platform of allPlatforms){
+    collisionTestMethod(platform);
+  }
 }
