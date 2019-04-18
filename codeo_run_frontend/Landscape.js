@@ -63,7 +63,7 @@ class Landscape extends AnimatedObject  {
             return res.json()
         })
         .then(function(saveResponse){
-            console.log(saveResponse)
+            //console.log(saveResponse)
         })
     }
 
