@@ -7,6 +7,7 @@ class PlayableCharacter extends AnimatedObject{
         this.name = name
         this.x = x
         this.y = y
+        this.canvas = document.createElement()
         this.points = points
         this.health = health
         this.life_time_points = life_time_points
@@ -53,7 +54,7 @@ class PlayableCharacter extends AnimatedObject{
           }
 
         }
-       
+
     }
 
     verticalMovement(){
@@ -99,7 +100,7 @@ class PlayableCharacter extends AnimatedObject{
      // console.log(this.pcPositions)
     }
 
-    
-  
+
+
 }
 const allPcs = [];

@@ -34,6 +34,10 @@ class AnimatedObject {
     }
   }
 
+  scroll(){
+    
+  }
+
   drawFrame(frameX, frameY, canvasX, canvasY) {
     this.context.drawImage(this.img, frameX * this.spritesheet.width, frameY * this.spritesheet.height, this.spritesheet.width, this.spritesheet.height,
     canvasX, canvasY, this.spritesheet.width * this.scaleFactor, this.spritesheet.height * this.scaleFactor);

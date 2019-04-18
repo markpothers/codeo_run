@@ -1,7 +1,8 @@
 
 
-class Landscape  {
-    constructor(name, x, y){
+class Landscape extends AnimatedObject  {
+    constructor(img, name, x, y){
+        super(img)
         this.name = name;
         this.x = x;
         this.y = y;
@@ -62,4 +63,3 @@ class Landscape  {
     }
 
 }
-
