@@ -10,7 +10,7 @@ class Platform extends StaticObject {
         this.y = this.randomVerticalPosition()
         this.width = width
         this.height = height
-        this.bottom = this.randomVerticalPosition()
+        this.bottom = this.y + this.height
         this.infiniteScroll()
         allPlatforms.push(this)
         //Not sure whether the following function will be effective if we call here.Pls dont remove the comment, until we confirm

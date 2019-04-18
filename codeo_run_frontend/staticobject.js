@@ -19,7 +19,8 @@ class StaticObject {
           this.context.clearRect(this.x + scrollSpeed, this.y, this.width, this.height);
           this.context.drawImage(this.img, this.x, this.y, this.width, this.height);
           this.x -= scrollSpeed;
-          if(this.x < -200){
+          if(this.x < -300){
+            StaticObject.all.pop(this)
           return;
           }
           window.requestAnimationFrame(loop);

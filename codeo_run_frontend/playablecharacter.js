@@ -7,6 +7,8 @@ class PlayableCharacter extends AnimatedObject{
         this.name = name
         this.x = x
         this.y = y
+        this.width = 128
+        this.height = 128
         this.canvas = document.querySelector('#foreground');
         this.context = this.canvas.getContext('2d');
         this.points = points

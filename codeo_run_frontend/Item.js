@@ -9,7 +9,8 @@ class Item extends StaticObject {
         this.health = health;
         this.width = width
         this.height = height
-        this.bottom = this.randomVerticalPosition()
+        this.right = this.x + this.width
+        this.bottom = this.y + this.height
         this.infiniteScroll()
         //this.spawn()
     }

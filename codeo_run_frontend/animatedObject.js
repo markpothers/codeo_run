@@ -21,10 +21,10 @@ class AnimatedObject {
         return;
       }
     this.frameCount = 0;
-    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.context.clearRect(this.x, this.y, this.width, this.height);
+    if(typeof callback == 'function') callback()
     this.drawFrame(cycleLoop[this.currentLoopIndex], animationSet.yPos, this.x, this.y);
     this.currentLoopIndex++;
-    if(typeof callback == 'function') callback()
     if (this.currentLoopIndex >= cycleLoop.length) {
       this.currentLoopIndex = 0;
     }
