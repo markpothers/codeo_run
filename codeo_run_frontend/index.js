@@ -14,6 +14,8 @@ function range(start, end, step = 1) {
 
 document.addEventListener('DOMContentLoaded', () => {
   const can = document.querySelector('#background');
+  let object_container = document.querySelector("#character_container")
+  object_container.style.width = window.innerWidth
   const ctx = can.getContext('2d');
   const can2 = document.querySelector('#foreground');
   const ctx2 = can.getContext('2d');
@@ -92,13 +94,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   setInterval(function(){
     StaticObject.scroll()
+    collisionCheckAllPlatforms()
     if (character.vertical_speed > -15) {
       character.vertical_speed -= 1.2
     }
     if(parseInt(character.y) < 220){
       character.verticalMovement()
     }
-  }, 10)
+  }, 250)
 
 
   let nextPlatformInterval = function(){
@@ -109,13 +112,13 @@ document.addEventListener('DOMContentLoaded', () => {
     return ((Math.floor(Math.random() * 3000) + 500))  // 0.5 sec + 0 to 3 sec (i.e. 0.5 to 3.5 sec interval)
   }
 
-  setInterval(function(){
+ // setInterval(function(){
     Platform.choosePlatform() 
-       }, nextPlatformInterval())
+      // }, nextPlatformInterval())
 
-  setInterval(function(){
-    Item.pickRandomItem();
-  }, nextItemInterval())
+  // setInterval(function(){
+  //   Item.pickRandomItem();
+  // }, nextItemInterval())
 
-
+  
 })
