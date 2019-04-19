@@ -60,19 +60,24 @@ function collisionTestMethod(object){
 
         if(object==platform){
             //console.log("collision occurred with a platform")
-            var audio = new Audio(`./assets/Audio/Strong_Punch-Mike_Koenig-574430706.mp3`);
-            audio.play();
+            
 
             if(playableCharacter.y + playableCharacter.height < object.y + 30){
+              var audio = new Audio(`./assets/Audio/Strong_Punch-Mike_Koenig-574430706.mp3`);
+              audio.play();
               playableCharacter.falls  = false
               playableCharacter.vertical_speed = 0
             } else{
+            var audio = new Audio(`./assets/Audio/Strong_Punch-Mike_Koenig-574430706.mp3`);
+            audio.play();
             playableCharacter.direction = 'stop'
             playableCharacter.vertical_speed = -5
           }
         }
     }
     if(minotaurCollisionDetection(characterPositions, characterWidth, characterHeight)){
+            var audio = new Audio(`./assets/Audio/Strong_Punch-Mike_Koenig-574430706.mp3`);
+            audio.play();
             playableCharacter.knockbackLeft()
             playableCharacter.health -= 20
    }
