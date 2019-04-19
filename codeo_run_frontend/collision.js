@@ -44,6 +44,11 @@ function collisionTestMethod(object){
 
     if(collisionDetection(characterPositions, characterWidth, characterHeight , renderPosition(object))){
         if(object==item){
+          //console.log("collision occurred with an item");
+            
+          //console.log(playableCharacter.health, playableCharacter.points)
+          var audio = new Audio(`./assets/Audio/Jump-SoundBible.com-1007297584.mp3`,);
+          audio.play();
           item.pickup(playableCharacter)
           item.context.clearRect(item.x, item.y, item.width, item.height)
           item.x = 0
@@ -54,6 +59,10 @@ function collisionTestMethod(object){
         }
 
         if(object==platform){
+            //console.log("collision occurred with a platform")
+            var audio = new Audio(`./assets/Audio/Strong_Punch-Mike_Koenig-574430706.mp3`);
+            audio.play();
+
             if(playableCharacter.y + playableCharacter.height < object.y + 30){
               playableCharacter.falls  = false
               playableCharacter.vertical_speed = 0

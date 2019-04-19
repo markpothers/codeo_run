@@ -96,6 +96,9 @@ document.addEventListener('DOMContentLoaded', () => {
       collisionCheckAllPlatforms()
       //Invoking collison check for the items here
       collisionCheckAllItems()
+
+      //Invoking 
+      avoidItemPlatformOL()
       
       if (character.falls && character.vertical_speed > -15) {
         character.vertical_speed -= 1.2
