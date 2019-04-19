@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     character.idle()
     let minotaur = new Minotaur
     minotaur.idle()
+    minotaur.changeHealth()
 
     document.addEventListener('keydown', function(e){
       if(e.repeat) return
@@ -65,10 +66,18 @@ document.addEventListener('DOMContentLoaded', () => {
         character.direction = "left"
         character.runLeft()
       }
+      if(e.key == 'Shift'){
+        character.battling()
+      }
     })
 
     document.addEventListener('keyup', function(e){
-      if(e.key == 'ArrowRight'||e.key == 'ArrowLeft'){
+      if(character.direction == 'battling'){
+        window.setTimeout(() => {
+          character.direction = "stop"
+          character.idle()
+        }, 1000)
+      }else{
       character.direction = "stop"
       character.idle()
       }
@@ -97,9 +106,9 @@ document.addEventListener('DOMContentLoaded', () => {
       //Invoking collison check for the items here
       collisionCheckAllItems()
 
-      //Invoking 
+      //Invoking
       avoidItemPlatformOL()
-      
+
       if (character.falls && character.vertical_speed > -15) {
         character.vertical_speed -= 1.2
       }

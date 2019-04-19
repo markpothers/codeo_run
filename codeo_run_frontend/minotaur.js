@@ -11,6 +11,11 @@ class Minotaur extends AnimatedObject{
       this.canvas = document.querySelector('#enemies');
       this.context = this.canvas.getContext('2d');
       this.health = health
+      this.healthBar = document.createElement('img')
+      this.healthBar.height = 27
+      this.healthBar.src = `./assets/Counters/FullHealthBar.png`
+      this.invulnerable = false
+      this.dead = false
       //Counter.changeHealth(this.health)
 
       this.canvas.width = window.innerWidth;
@@ -73,6 +78,22 @@ class Minotaur extends AnimatedObject{
       let rand = Math.floor(Math.random() * arr.length)
       arr[rand].bind(this)()
     }, 500)
+  }
+
+  changeHealth(){
+    const healthCan = document.querySelector('#health_bar');
+    const healthCon = healthCan.getContext('2d');
+    healthCan.width = window.innerWidth;
+    healthCan.height = 400;
+
+
+      const loop = () => {
+        this.healthBar.width = (this.health/100)*135
+        healthCon.clearRect(0, 0, healthCan.width, healthCan.height);
+        healthCon.drawImage(this.healthBar, this.x, this.y - 20, this.healthBar.width, this.healthBar.height);
+        window.requestAnimationFrame(loop);
+    }
+      loop()
   }
 }
 Minotaur.all = []

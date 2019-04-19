@@ -14,11 +14,11 @@ function avoidItemPlatformOL(){
             let itop = iPositions[3]
             //if(((iright>=pleft)&&(ileft<=pright)) || ((ibottom>=ptop)&&(itop<=pbottom))){
             if(((pleft < iright) && (pright > ileft) && (pbottom > itop) && (ptop < ibottom))){
-            
+
                 console.log("got here! If item and platform are overlapping, lets delete the item")
             }
-        }  
-    } 
+        }
+    }
 }
 
 function renderPosition(object){
@@ -45,7 +45,7 @@ function collisionTestMethod(object){
     if(collisionDetection(characterPositions, characterWidth, characterHeight , renderPosition(object))){
         if(object==item){
           //console.log("collision occurred with an item");
-            
+
           //console.log(playableCharacter.health, playableCharacter.points)
           var audio = new Audio(`./assets/Audio/Jump-SoundBible.com-1007297584.mp3`,);
           audio.play();
@@ -60,7 +60,7 @@ function collisionTestMethod(object){
 
         if(object==platform){
             //console.log("collision occurred with a platform")
-            
+
 
             if(playableCharacter.y + playableCharacter.height < object.y + 30){
               var audio = new Audio(`./assets/Audio/Strong_Punch-Mike_Koenig-574430706.mp3`);
@@ -78,6 +78,13 @@ function collisionTestMethod(object){
     if(minotaurCollisionDetection(characterPositions, characterWidth, characterHeight)){
       var audio = new Audio(`./assets/Audio/Strong_Punch-Mike_Koenig-574430706.mp3`);
             audio.play();
+      if(playableCharacter.direction == 'battling'){
+        if(Minotaur.all[0].invulnerable == false){
+          Minotaur.all[0].invulnerable = true
+          Minotaur.all[0].health -= 20
+          }
+        window.setTimeout(() => Minotaur.all[0].invulnerable = false, 2000)
+      }else{
       if(Minotaur.all[0].x >= playableCharacter.x){
             playableCharacter.knockbackLeft()
           } else {
@@ -92,8 +99,9 @@ function collisionTestMethod(object){
               }
             window.setTimeout(() => playableCharacter.invulnerable = false, 2000)
             }
+          }
         }
-            
+
 function collisionDetection(characterPositions, characterWidth, characterHeight, objectPositions){
     const playableCharacter = allPcs[0]
     var pleft = objectPositions[0];
