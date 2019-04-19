@@ -23,6 +23,13 @@ function collisionTestMethod(object){
 
     if(collisionDetection(characterPositions, characterWidth, characterHeight , renderPosition(object))){
         if(object==item){
+          item.pickup(playableCharacter)
+          item.context.clearRect(item.x, item.y, item.width, item.height)
+          item.x = 0
+          item.y = 0
+          // playableCharacter.health = 90
+          console.log(playableCharacter.health)
+
         }
 
         if(object==platform){
@@ -38,8 +45,7 @@ function collisionTestMethod(object){
     if(minotaurCollisionDetection(characterPositions, characterWidth, characterHeight)){
             playableCharacter.knockbackLeft()
             playableCharacter.health -= 20
-            Counter.changeHealth(playableCharacter.health)
-    }
+   }
 }
 function collisionDetection(characterPositions, characterWidth, characterHeight, objectPositions){
     const playableCharacter = allPcs[0]
