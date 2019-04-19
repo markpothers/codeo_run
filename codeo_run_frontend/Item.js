@@ -48,5 +48,11 @@ class Item extends StaticObject {
         }
     }
 
+    pickup(character, item){
+        character.health += item.health
+        Counter.changeHealth()
+        character.points += item.points
+        Counter.changePoints()
+    }
 
 }
