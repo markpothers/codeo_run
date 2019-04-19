@@ -189,9 +189,9 @@ const allPlatforms = [];
 
 //collision check for all of the platforms
 function collisionCheckAllPlatforms(){
-    // for(platform of allPlatforms){
-    //     collisionTestMethod(platform);
-    // }
+    for(platform of allPlatforms){
+        collisionTestMethod(platform);
+    }
 
 //we used this to test one single platform
 //    for(let i =0; i < allPlatforms.length; i++){
@@ -201,5 +201,6 @@ function collisionCheckAllPlatforms(){
 //     //    console.log(allPlatforms[0])
 //     //    console.log(allPcs[0])
 //        }
+//     }
 }
 
