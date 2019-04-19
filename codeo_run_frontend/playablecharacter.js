@@ -62,7 +62,6 @@ class PlayableCharacter extends AnimatedObject{
     }
 
     verticalMovement(){
-      if(this.falls == true){
         this.y -= this.vertical_speed
 
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -84,26 +83,28 @@ class PlayableCharacter extends AnimatedObject{
          // console.log(this.pcPositions);
 
         }
-      }
+
     }
 
     idle() {
       this.animateObject(this.spritesheet.idle, 15)
       this.pcPositions = [this.x, this.y];
-     // console.log(this.pcPositions)
-
     }
 
     runLeft() {
       this.animateObject(this.spritesheet.runLeft, 5, () => {this.x -= 30})
       this.pcPositions = [this.x, this.y];
-      //console.log(this.pcPositions)
     }
 
     runRight() {
       this.animateObject(this.spritesheet.runRight, 5, () => {this.x += 30})
       this.pcPositions = [this.x, this.y];
-     // console.log(this.pcPositions)
+    }
+
+    knockbackLeft(){
+      this.direction = 'left'
+      this.vertical_speed = 10
+      this.verticalMovement()
     }
 
 

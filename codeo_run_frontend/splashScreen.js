@@ -12,6 +12,8 @@ const splashScreen = () => {
 
   splashDraw.fillStyle = 'orange';
 
+  splash.addEventListener('mousedown',  () => {console.log('this works')})
+
   splashDraw.fillRect(0, 0, splash.width, splash.height)
 
   logo.addEventListener('load', () => {

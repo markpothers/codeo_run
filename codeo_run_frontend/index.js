@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const can3 = document.querySelector('#platforms');
   const ctx3 = can.getContext('2d');
 
-
   can.width = window.innerWidth;
   can.height = 400;
   can2.width = window.innerWidth;
@@ -53,6 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     character.idle()
+    let minotaur = new Minotaur
+    minotaur.idle()
 
     document.addEventListener('keydown', function(e){
       if(e.repeat) return
@@ -95,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
       collisionCheckAllPlatforms()
       //Invoking collison check for the items here
       collisionCheckAllItems()
-      if (character.vertical_speed > -15) {
+      if (character.falls && character.vertical_speed > -15) {
         character.vertical_speed -= 1.2
       }
       if(parseInt(character.y) < 220){

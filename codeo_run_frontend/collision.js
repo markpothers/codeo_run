@@ -5,8 +5,8 @@ function renderPosition(object){
     let positions = []
     positions.push(object.x) //left
     positions.push(object.y) //
-    positions.push(object.width + object.x) //right
-    positions.push(object.bottom) //top
+    positions.push(object.width - 50 + object.x) //right
+    positions.push(object.bottom - 50) //top
     return positions;
 }
 
@@ -17,7 +17,7 @@ function collisionTestMethod(object){
 
     const characterPositions = playableCharacter.pcPositions
 
-    const characterWidth = 128
+    const characterWidth = 70
     const characterHeight = 128
 
 
@@ -26,13 +26,19 @@ function collisionTestMethod(object){
         }
 
         if(object==platform){
-            if(playableCharacter.y + playableCharacter.height < object.y + 100){
+            if(playableCharacter.y + playableCharacter.height < object.y + 30){
               playableCharacter.falls  = false
+              playableCharacter.vertical_speed = 0
             } else{
             playableCharacter.direction = 'stop'
             playableCharacter.vertical_speed = -5
           }
         }
+    }
+    if(minotaurCollisionDetection(characterPositions, characterWidth, characterHeight)){
+            playableCharacter.knockbackLeft()
+            playableCharacter.health -= 20
+            Counter.changeHealth(playableCharacter.health)
     }
 }
 function collisionDetection(characterPositions, characterWidth, characterHeight, objectPositions){
@@ -51,20 +57,53 @@ function collisionDetection(characterPositions, characterWidth, characterHeight,
     var collision = false;
 
     //checking - lets not delete this one. Will be easy for future development
-    if(window.testing){
-
-        console.log('Platform: ')
-        console.log('left: ', pleft, 'right: ', pright, 'top: ', ptop, 'bottom: ', pbottom, )
-        console.log('Character: ')
-        console.log('left: ', pcleft, 'right: ', pcright, 'topc: ', pctop, 'bottom: ', pcbottom, )
-    }
+    // if(window.testing){
+    //
+    //     console.log('Platform: ')
+    //     console.log('left: ', pleft, 'right: ', pright, 'top: ', ptop, 'bottom: ', pbottom, )
+    //     console.log('Character: ')
+    //     console.log('left: ', pcleft, 'right: ', pcright, 'topc: ', pctop, 'bottom: ', pcbottom, )
+    // }
 
 
     if(((pleft < pcright) && (pright > pcleft) && (pbottom > pctop) && (ptop < pcbottom))){
       collision = true;
     }
-    if(!collision){
-      playableCharacter.falls  = true
+    // if(!collision){
+    //   playableCharacter.falls  = true
+    // }
+
+    return collision;
+
+}
+
+function minotaurCollisionDetection(characterPositions, characterWidth, characterHeight){
+    const playableCharacter = allPcs[0]
+    const mrMinotaur = Minotaur.all[0]
+
+    var minLeft = mrMinotaur.x;
+    var minRight =  mrMinotaur.x + mrMinotaur.width;//platform's left + platform's width
+    var minTop = mrMinotaur.y; //platform's top (y)
+    var minBottom =  mrMinotaur.y + mrMinotaur.height; //platform's bottom + (platform.height)
+    var pcleft = characterPositions[0];
+    var pcright = (characterPositions[0]) + (characterWidth);
+    var pctop = characterPositions[1]; // character to top of canvas
+    var pcbottom= pctop + characterHeight;
+    var collision = false;
+
+    //checking - lets not delete this one. Will be easy for future development
+    if(window.testing){
+
+        console.log('Platform: ')
+        console.log('left: ', minLeft, 'right: ', minRight, 'top: ', minTop, 'bottom: ', minBottom, )
+        console.log('Character: ')
+        console.log('left: ', pcleft, 'right: ', pcright, 'topc: ', pctop, 'bottom: ', pcbottom, )
+    }
+
+
+    if(((minLeft < pcright) && (minRight > pcleft) && (minBottom > pctop) && (minTop < pcbottom))){
+      console.log(minLeft, Minotaur.all[0].x)
+      collision = true;
     }
 
     return collision;
@@ -74,6 +113,8 @@ function collisionDetection(characterPositions, characterWidth, characterHeight,
 
 //collision check for all of the platforms
 function collisionCheckAllPlatforms(){
+  const playableCharacter = allPcs[0]
+  playableCharacter.falls = true
     for(platform of allPlatforms){
         collisionTestMethod(platform);
     }
