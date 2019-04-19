@@ -58,3 +58,4 @@ class Platform extends StaticObject {
     //lets write a method to discard or delete the platforms that goes offscreen
     }
 
+    const allPlatforms = [];
