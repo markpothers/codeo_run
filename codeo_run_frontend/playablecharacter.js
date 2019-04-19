@@ -13,6 +13,7 @@ class PlayableCharacter extends AnimatedObject{
         this.canvas = document.querySelector('#foreground');
         this.context = this.canvas.getContext('2d');
         this.points = points
+        this.invulnerable = false
         this.health = health
         this.life_time_points = life_time_points
         this.vertical_speed = -20
@@ -102,6 +103,12 @@ class PlayableCharacter extends AnimatedObject{
 
     knockbackLeft(){
       this.direction = 'left'
+      this.vertical_speed = 10
+      this.verticalMovement()
+    }
+
+    knockbackRight(){
+      this.direction = 'right'
       this.vertical_speed = 10
       this.verticalMovement()
     }
