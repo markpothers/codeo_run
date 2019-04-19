@@ -1,4 +1,25 @@
-
+//function to avoid overlapping of an item and a platform among themselves
+function avoidItemPlatformOL(){
+    for(platform of allPlatforms){
+        for(item in allItems){
+            let pPositions = renderPosition(platform);
+            let iPositions = renderPosition(item);
+            let pleft = pPositions[0]
+            let pbottom = pPositions[1]
+            let pright = pPositions[2]
+            let ptop = pPositions[3]
+            let ileft = iPositions[0]
+            let ibottom = iPositions[1]
+            let iright = iPositions[2]
+            let itop = iPositions[3]
+            //if(((iright>=pleft)&&(ileft<=pright)) || ((ibottom>=ptop)&&(itop<=pbottom))){
+            if(((pleft < iright) && (pright > ileft) && (pbottom > itop) && (ptop < ibottom))){
+            
+                console.log("got here! If item and platform are overlapping, lets delete the item")
+            }
+        }  
+    } 
+}
 
 function renderPosition(object){
 

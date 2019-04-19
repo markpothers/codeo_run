@@ -28,7 +28,9 @@ class Item extends StaticObject {
         let healths = [0, 15, -20, 5, 0]
         let points = [100, 25, 50, 15, 15]
         let specials = ["", "", "slow", "speed", "no_jumping"]
-        return new Item (names[choice], srcs[choice], sizes[choice], sizes[choice], healths[choice], points[choice], specials[choice], itemXPos, itemYPos)
+        let newItem =  new Item (names[choice], srcs[choice], sizes[choice], sizes[choice], healths[choice], points[choice], specials[choice], itemXPos, itemYPos)
+        //console.log(newItem)
+        return newItem
     }
 
     static recreateItem(objectName, itemXPos, itemYPos){
