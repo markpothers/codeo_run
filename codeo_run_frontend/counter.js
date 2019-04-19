@@ -13,8 +13,6 @@ class Counter {
         counter_container.style.zIndex = 5
         let object_container = document.querySelector("#character_container")
         object_container.append(counter_container)
-        // counter_container.borderStyle ='solid'
-        // counter_container.borderWidth = '2px'
         counter_container.style.left = `20px`
         counter_container.style.bottom = `675px`
         counter_container.style.transform = "rotate(-5deg)"

@@ -7,5 +7,5 @@ Rails.application.routes.draw do
 
 
   get '/play', to: 'landscapes#index'
-  post 'play', to: 'landscapes#create'
+  post '/play', to: 'landscapes#create'
 end

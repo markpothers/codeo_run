@@ -18,8 +18,17 @@ class Item extends StaticObject {
         this.bottom = this.y + this.height
         allItems.push(this)
         this.infiniteScroll()
-        //this.spawn()
     }
+
+    static randomItemSpawn(){
+        let itemInterval = ((Math.floor(Math.random() * 1000) + 400))  // i.e. 0.4 to 1.4 sec interval)
+        let choice = (Math.floor(Math.random() * 5)) // NB 5 is the number of item choices, currently set manually to keep those choices in platform.js
+        Item.createItem(choice);
+        setTimeout(function(){
+            Item.randomItemSpawn()
+        }, itemInterval)
+      }
+  
 
     static createItem(choice, itemXPos, itemYPos){
         let names = ["coin1", "energydraw", "poison", "fuel", "batterydown"]
@@ -28,7 +37,9 @@ class Item extends StaticObject {
         let healths = [0, 15, -20, 5, 0]
         let points = [100, 25, 50, 15, 15]
         let specials = ["", "", "slow", "speed", "no_jumping"]
-        return new Item (names[choice], srcs[choice], sizes[choice], sizes[choice], healths[choice], points[choice], specials[choice], itemXPos, itemYPos)
+        let newItem =  new Item (names[choice], srcs[choice], sizes[choice], sizes[choice], healths[choice], points[choice], specials[choice], itemXPos, itemYPos)
+        //console.log(newItem)
+        return newItem
     }
 
     static recreateItem(objectName, itemXPos, itemYPos){
@@ -51,6 +62,12 @@ class Item extends StaticObject {
         }
     }
 
+    pickup(character){
+        character.health += this.health
+        Counter.changeHealth(character.health)
+        character.points += this.points
+        Counter.changeScore(character.points)
+    }
 
 }
 const allItems = [];
