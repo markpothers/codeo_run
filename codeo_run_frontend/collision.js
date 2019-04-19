@@ -1,10 +1,31 @@
-
+//function to avoid overlapping of an item and a platform among themselves
+function avoidItemPlatformOL(){
+    for(platform of allPlatforms){
+        for(item in allItems){
+            let pPositions = renderPosition(platform);
+            let iPositions = renderPosition(item);
+            let pleft = pPositions[0]
+            let pbottom = pPositions[1]
+            let pright = pPositions[2]
+            let ptop = pPositions[3]
+            let ileft = iPositions[0]
+            let ibottom = iPositions[1]
+            let iright = iPositions[2]
+            let itop = iPositions[3]
+            //if(((iright>=pleft)&&(ileft<=pright)) || ((ibottom>=ptop)&&(itop<=pbottom))){
+            if(((pleft < iright) && (pright > ileft) && (pbottom > itop) && (ptop < ibottom))){
+            
+                console.log("got here! If item and platform are overlapping, lets delete the item")
+            }
+        }  
+    } 
+}
 
 function renderPosition(object){
 
     let positions = []
     positions.push(object.x) //left
-    positions.push(object.y) //
+    positions.push(object.y) //bottom
     positions.push(object.width + object.x) //right
     positions.push(object.bottom) //top
     return positions;
@@ -25,10 +46,16 @@ function collisionTestMethod(object){
     if((collisionDetection(characterPositions, characterWidth, characterHeight , renderPosition(object))===true)){
         if(object===item){
             console.log("collision occurred with an item");
+            
+            console.log(playableCharacter.health, playableCharacter.points)
+            var audio = new Audio(`./assets/Audio/Jump-SoundBible.com-1007297584.mp3`,);
+            audio.play();
         }
       
         if(object===platform){
             console.log("collision occurred with a platform")
+            var audio = new Audio(`./assets/Audio/Strong_Punch-Mike_Koenig-574430706.mp3`);
+            audio.play();
         }
     }
 }
