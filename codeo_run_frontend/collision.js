@@ -121,15 +121,15 @@ function minotaurCollisionDetection(characterPositions, characterWidth, characte
     //checking - lets not delete this one. Will be easy for future development
     if(window.testing){
 
-        console.log('Platform: ')
-        console.log('left: ', minLeft, 'right: ', minRight, 'top: ', minTop, 'bottom: ', minBottom, )
-        console.log('Character: ')
-        console.log('left: ', pcleft, 'right: ', pcright, 'topc: ', pctop, 'bottom: ', pcbottom, )
+        // console.log('Platform: ')
+        // console.log('left: ', minLeft, 'right: ', minRight, 'top: ', minTop, 'bottom: ', minBottom, )
+        // console.log('Character: ')
+        // console.log('left: ', pcleft, 'right: ', pcright, 'topc: ', pctop, 'bottom: ', pcbottom, )
     }
 
 
     if(((minLeft < pcright) && (minRight > pcleft) && (minBottom > pctop) && (minTop < pcbottom))){
-      console.log(minLeft, Minotaur.all[0].x)
+      // console.log(minLeft, Minotaur.all[0].x)
       collision = true;
     }
 

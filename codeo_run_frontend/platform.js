@@ -22,6 +22,15 @@ class Platform extends StaticObject {
         //collisionTestMethod(this);
     }
 
+    static randomPlatformSpawn(){
+        let platformInterval = ((Math.floor(Math.random() * 4000) + 1500))  // i.e. 1.5 to 4.5 sec interval)
+        let choice = (Math.floor(Math.random() * 5)) // NB 5 is the number of Platform choices, currently set manually to keep those choices in platform.js
+        Platform.createPlatform(choice);
+        setTimeout(function(){
+            Platform.randomPlatformSpawn()
+        }, platformInterval)
+      }
+
     static createPlatform(choice, platformXPos, platformYPos){
         let names = ['log', 'grass', 'ladderbar', 'floating_rock', 'ladder']
         let srcs = [`./assets/Platforms/log.png`, `./assets/Platforms/grass.png`, `./assets/Platforms/ladderbar.png`, `./assets/Platforms/floating_rock.png`, `./assets/Platforms/ladder.png` ]

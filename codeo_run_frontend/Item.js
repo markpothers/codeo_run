@@ -18,8 +18,17 @@ class Item extends StaticObject {
         this.bottom = this.y + this.height
         allItems.push(this)
         this.infiniteScroll()
-        //this.spawn()
     }
+
+    static randomItemSpawn(){
+        let itemInterval = ((Math.floor(Math.random() * 1000) + 400))  // i.e. 0.4 to 1.4 sec interval)
+        let choice = (Math.floor(Math.random() * 5)) // NB 5 is the number of item choices, currently set manually to keep those choices in platform.js
+        Item.createItem(choice);
+        setTimeout(function(){
+            Item.randomItemSpawn()
+        }, itemInterval)
+      }
+  
 
     static createItem(choice, itemXPos, itemYPos){
         let names = ["coin1", "energydraw", "poison", "fuel", "batterydown"]

@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
       collisionCheckAllPlatforms()
       //Invoking collison check for the items here
       collisionCheckAllItems()
-      
+
       if (character.falls && character.vertical_speed > -15) {
         character.vertical_speed -= 1.2
       }
@@ -105,24 +105,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }, 10)
 
-
-    let nextPlatformInterval = function(){
-      return ((Math.floor(Math.random() * 5000) + 1500))  // 1.5 sec + 0 to 5 sec (i.e. 1.5 to 6.5 sec interval)
-    }
-
-    let nextItemInterval = function(){
-      return ((Math.floor(Math.random() * 3000) + 500))  // 0.5 sec + 0 to 3 sec (i.e. 0.5 to 3.5 sec interval)
-    }
-
-    setInterval(function(){
-      let choice = (Math.floor(Math.random() * 5))  // NB 5 is the number of item choices, currently set manually to keep those choices in item.js
-      Platform.createPlatform(choice)
-        }, nextPlatformInterval())
-
-    setInterval(function(){
-      let choice = (Math.floor(Math.random() * 5)) // NB 5 is the number of item choices, currently set manually to keep those choices in platform.js
-      Item.createItem(choice);
-    }, nextItemInterval())
+    Platform.randomPlatformSpawn()
+    Item.randomItemSpawn()
   })
 
 
