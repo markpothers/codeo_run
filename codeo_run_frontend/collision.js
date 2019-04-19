@@ -14,7 +14,6 @@ function renderPosition(object){
 
 function collisionTestMethod(object){
     const playableCharacter = allPcs[0]
-    const pc = playableCharacter.element
 
     const characterPositions = playableCharacter.pcPositions
 
@@ -22,17 +21,22 @@ function collisionTestMethod(object){
     const characterHeight = 128
 
 
-    if((collisionDetection(characterPositions, characterWidth, characterHeight , renderPosition(object))===true)){
-        if(object===item){
-            console.log("collision occurred with an item");
+    if(collisionDetection(characterPositions, characterWidth, characterHeight , renderPosition(object))){
+        if(object==item){
         }
-      
-        if(object===platform){
-            console.log("collision occurred with a platform")
+
+        if(object==platform){
+            if(playableCharacter.y + playableCharacter.height < object.y + 100){
+              playableCharacter.falls  = false
+            } else{
+            playableCharacter.direction = 'stop'
+            playableCharacter.vertical_speed = -5
+          }
         }
     }
 }
 function collisionDetection(characterPositions, characterWidth, characterHeight, objectPositions){
+    const playableCharacter = allPcs[0]
     var pleft = objectPositions[0];
     //objectPositions -> object's positions->left, bottom ,right, top
     //characterPositions -> playableCharacter's positions ->left, bottom
@@ -45,8 +49,8 @@ function collisionDetection(characterPositions, characterWidth, characterHeight,
     var pctop = characterPositions[1]; // character to top of canvas
     var pcbottom= pctop + characterHeight;
     var collision = false;
-    
-    //checking - lets not delete this one. Will be easy for future development 
+
+    //checking - lets not delete this one. Will be easy for future development
     if(window.testing){
 
         console.log('Platform: ')
@@ -55,13 +59,16 @@ function collisionDetection(characterPositions, characterWidth, characterHeight,
         console.log('left: ', pcleft, 'right: ', pcright, 'topc: ', pctop, 'bottom: ', pcbottom, )
     }
 
-    
+
     if(((pleft < pcright) && (pright > pcleft) && (pbottom > pctop) && (ptop < pcbottom))){
-        	collision = true;
+      collision = true;
+    }
+    if(!collision){
+      playableCharacter.falls  = true
     }
 
     return collision;
-    
+
 }
 
 

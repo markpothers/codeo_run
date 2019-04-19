@@ -5,10 +5,12 @@ class PlayableCharacter extends AnimatedObject{
         super(`./assets/mainChar/mainCharSheet.png`)
 
         this.name = name
+        this.falls = true
         this.x = x
         this.y = y
         this.width = 128
         this.height = 128
+        this.bottom = this.y + this.height
         this.canvas = document.querySelector('#foreground');
         this.context = this.canvas.getContext('2d');
         this.points = points
@@ -60,6 +62,7 @@ class PlayableCharacter extends AnimatedObject{
     }
 
     verticalMovement(){
+      if(this.falls == true){
         this.y -= this.vertical_speed
 
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -81,6 +84,7 @@ class PlayableCharacter extends AnimatedObject{
          // console.log(this.pcPositions);
 
         }
+      }
     }
 
     idle() {
