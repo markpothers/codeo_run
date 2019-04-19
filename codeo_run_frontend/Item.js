@@ -16,6 +16,7 @@ class Item extends StaticObject {
         this.height = height
         this.right = this.x + this.width
         this.bottom = this.y + this.height
+        allItems.push(this)
         this.infiniteScroll()
         //this.spawn()
     }
@@ -52,3 +53,4 @@ class Item extends StaticObject {
 
 
 }
+const allItems = [];

@@ -91,7 +91,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setInterval(function(){
       // StaticObject.scroll()
+      //Invoking collision check for the platforms here
       collisionCheckAllPlatforms()
+      //Invoking collison check for the items here
+      collisionCheckAllItems()
       if (character.vertical_speed > -15) {
         character.vertical_speed -= 1.2
       }
