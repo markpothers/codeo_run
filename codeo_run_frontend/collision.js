@@ -76,12 +76,24 @@ function collisionTestMethod(object){
         }
     }
     if(minotaurCollisionDetection(characterPositions, characterWidth, characterHeight)){
-            var audio = new Audio(`./assets/Audio/Strong_Punch-Mike_Koenig-574430706.mp3`);
+      var audio = new Audio(`./assets/Audio/Strong_Punch-Mike_Koenig-574430706.mp3`);
             audio.play();
+      if(Minotaur.all[0].x >= playableCharacter.x){
             playableCharacter.knockbackLeft()
-            playableCharacter.health -= 20
-   }
-}
+          } else {
+            playableCharacter.knockbackRight()
+            console.log(Minotaur.all[0].x >= playableCharacter.x + playableCharacter.width)
+            console.log(Minotaur.all[0].x, playableCharacter.x + playableCharacter.width)
+          }
+            if(playableCharacter.invulnerable == false){
+              playableCharacter.invulnerable = true
+              playableCharacter.health -= 20
+              Counter.changeHealth(playableCharacter.health)
+              }
+            window.setTimeout(() => playableCharacter.invulnerable = false, 2000)
+            }
+        }
+            
 function collisionDetection(characterPositions, characterWidth, characterHeight, objectPositions){
     const playableCharacter = allPcs[0]
     var pleft = objectPositions[0];
@@ -123,8 +135,8 @@ function minotaurCollisionDetection(characterPositions, characterWidth, characte
     const mrMinotaur = Minotaur.all[0]
 
     var minLeft = mrMinotaur.x;
-    var minRight =  mrMinotaur.x + mrMinotaur.width;//platform's left + platform's width
-    var minTop = mrMinotaur.y; //platform's top (y)
+    var minRight =  mrMinotaur.x + mrMinotaur.width - 80;//platform's left + platform's width
+    var minTop = mrMinotaur.y + 110; //platform's top (y)
     var minBottom =  mrMinotaur.y + mrMinotaur.height; //platform's bottom + (platform.height)
     var pcleft = characterPositions[0];
     var pcright = (characterPositions[0]) + (characterWidth);
@@ -143,7 +155,6 @@ function minotaurCollisionDetection(characterPositions, characterWidth, characte
 
 
     if(((minLeft < pcright) && (minRight > pcleft) && (minBottom > pctop) && (minTop < pcbottom))){
-      // console.log(minLeft, Minotaur.all[0].x)
       collision = true;
     }
 
