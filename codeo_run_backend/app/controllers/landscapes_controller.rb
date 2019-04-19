@@ -5,8 +5,8 @@ class LandscapesController < ApplicationController
     end
 
     def create
-        PlayableCharacter.destroy_all
-        Platform.destroy_all
+        PlayableCharacter.delete_all
+        Platform.delete_all
         landscape = Landscape.all[0]
         character = game_params["dataToSave"]["character"]
         newCharacter = PlayableCharacter.create(name: character["name"], points:character["points"], health:character["health"], x:character["x"], y:character["y"])

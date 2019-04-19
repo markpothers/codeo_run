@@ -44,8 +44,7 @@ function collisionTestMethod(object){
 
     if(collisionDetection(characterPositions, characterWidth, characterHeight , renderPosition(object))){
         if(object==item){
-          //console.log("collision occurred with an item");
-            
+          //console.log("collision occurred with an item");   
           //console.log(playableCharacter.health, playableCharacter.points)
           var audio = new Audio(`./assets/Audio/Jump-SoundBible.com-1007297584.mp3`,);
           audio.play();
