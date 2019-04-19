@@ -14,6 +14,8 @@ class Item extends StaticObject {
         }
         this.y = itemYPos
         this.height = height
+        this.right = this.x + this.width
+        this.bottom = this.y + this.height
         this.infiniteScroll()
         //this.spawn()
     }
