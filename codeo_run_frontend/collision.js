@@ -14,7 +14,7 @@ function avoidItemPlatformOL(){
             let itop = iPositions[3]
             //if(((iright>=pleft)&&(ileft<=pright)) || ((ibottom>=ptop)&&(itop<=pbottom))){
             if(((pleft < iright) && (pright > ileft) && (pbottom > itop) && (ptop < ibottom))){
-            
+                item.context.clearRect(item.x, item.y, item.width, item.height)
                 console.log("got here! If item and platform are overlapping, lets delete the item")
             }
         }  
@@ -63,9 +63,12 @@ function collisionTestMethod(object){
             
 
             if(playableCharacter.y + playableCharacter.height < object.y + 30){
-              var audio = new Audio(`./assets/Audio/Strong_Punch-Mike_Koenig-574430706.mp3`);
-              audio.play();
               playableCharacter.falls  = false
+             
+              var audio = new Audio(`./assets/Audio/Strong_Punch-Mike_Koenig-574430706.mp3`);
+              audio.loop = false;
+              audio.play();
+              audio.pause();
               playableCharacter.vertical_speed = 0
             } else{
             var audio = new Audio(`./assets/Audio/Strong_Punch-Mike_Koenig-574430706.mp3`);
