@@ -5,8 +5,12 @@ class PlayableCharacter extends AnimatedObject{
         super(`./assets/mainChar/mainCharSheet.png`)
 
         this.name = name
+        this.falls = true
         this.x = x
         this.y = y
+        this.width = 128
+        this.height = 128
+        this.bottom = this.y + this.height
         this.canvas = document.querySelector('#foreground');
         this.context = this.canvas.getContext('2d');
         this.points = points
@@ -79,25 +83,28 @@ class PlayableCharacter extends AnimatedObject{
          // console.log(this.pcPositions);
 
         }
+
     }
 
     idle() {
       this.animateObject(this.spritesheet.idle, 15)
       this.pcPositions = [this.x, this.y];
-     // console.log(this.pcPositions)
-
     }
 
     runLeft() {
       this.animateObject(this.spritesheet.runLeft, 5, () => {this.x -= 30})
       this.pcPositions = [this.x, this.y];
-      //console.log(this.pcPositions)
     }
 
     runRight() {
       this.animateObject(this.spritesheet.runRight, 5, () => {this.x += 30})
       this.pcPositions = [this.x, this.y];
-     // console.log(this.pcPositions)
+    }
+
+    knockbackLeft(){
+      this.direction = 'left'
+      this.vertical_speed = 10
+      this.verticalMovement()
     }
 
 

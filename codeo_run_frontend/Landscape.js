@@ -67,4 +67,13 @@ class Landscape extends AnimatedObject  {
         })
     }
 
+    fillWithSolidColor(color){
+      this.context.fillStyle = color;
+      this.context.fillRect(0, 0, this.canvas.width, this.canvas.height)
+    }
+
+    appendLogo(){
+      
+    }
+
 }
