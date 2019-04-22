@@ -53,9 +53,19 @@ class Minotaur extends AnimatedObject{
           frames: 7,
           yPos: 1
 
+        },
+
+        dying: {
+
+          direction: 'dead',
+          frames: 5,
+          yPos: 9
+
         }
       }
       this.lazyWalk()
+      this.ifDead()
+      this.changeHealth()
       Minotaur.all.push(this)
   }
 
@@ -72,8 +82,15 @@ class Minotaur extends AnimatedObject{
     this.animateObject(this.spritesheet.runRight, 5, () => {this.x += 2})
   }
 
+  dies() {
+    this.animateObject(this.spritesheet.dying, 5, () => {setTimeout(() => this.dead = true, 200)})
+  }
+
   lazyWalk(){
-    setInterval(() => {
+    let lazyWalk = setInterval(() => {
+      if(this.dead == true){
+        clearInterval(lazyWalk)
+      }
       let arr = [this.runRight, this.runLeft, this.idle]
       let rand = Math.floor(Math.random() * arr.length)
       arr[rand].bind(this)()
@@ -94,6 +111,19 @@ class Minotaur extends AnimatedObject{
         window.requestAnimationFrame(loop);
     }
       loop()
+  }
+
+  ifDead(){
+    if(this.dead){
+      clearInterval(deathInterval)
+    }
+    const deathInterval = setInterval(() => {
+      if(this.health <= 0){
+        this.direction = 'dead'
+        this.dies()
+        //Minotaur.all.splice(Minotaur.all.indexOf(this), 1)
+      }
+    }, 1000)
   }
 }
 Minotaur.all = []

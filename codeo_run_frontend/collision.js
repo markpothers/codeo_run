@@ -14,8 +14,7 @@ function avoidItemPlatformOL(){
             let itop = iPositions[3]
             //if(((iright>=pleft)&&(ileft<=pright)) || ((ibottom>=ptop)&&(itop<=pbottom))){
             if(((pleft < iright) && (pright > ileft) && (pbottom > itop) && (ptop < ibottom))){
-
-                console.log("got here! If item and platform are overlapping, lets delete the item")
+                item.context.clearRect(item.x, item.y, item.width, item.height)
             }
         }
     }
@@ -44,8 +43,7 @@ function collisionTestMethod(object){
 
     if(collisionDetection(characterPositions, characterWidth, characterHeight , renderPosition(object))){
         if(object==item){
-          //console.log("collision occurred with an item");
-
+          //console.log("collision occurred with an item");   
           //console.log(playableCharacter.health, playableCharacter.points)
           var audio = new Audio(`./assets/Audio/Jump-SoundBible.com-1007297584.mp3`,);
           audio.play();
@@ -63,9 +61,12 @@ function collisionTestMethod(object){
 
 
             if(playableCharacter.y + playableCharacter.height < object.y + 30){
-              var audio = new Audio(`./assets/Audio/Strong_Punch-Mike_Koenig-574430706.mp3`);
-              audio.play();
               playableCharacter.falls  = false
+             
+              var audio = new Audio(`./assets/Audio/Strong_Punch-Mike_Koenig-574430706.mp3`);
+              audio.loop = false;
+              audio.play();
+              audio.pause();
               playableCharacter.vertical_speed = 0
             } else{
             var audio = new Audio(`./assets/Audio/Strong_Punch-Mike_Koenig-574430706.mp3`);
@@ -75,9 +76,10 @@ function collisionTestMethod(object){
           }
         }
     }
+    if(Minotaur.all[0].dead == false){
     if(minotaurCollisionDetection(characterPositions, characterWidth, characterHeight)){
       var audio = new Audio(`./assets/Audio/Strong_Punch-Mike_Koenig-574430706.mp3`);
-            audio.play();
+            //audio.play();
       if(playableCharacter.direction == 'battling'){
         if(Minotaur.all[0].invulnerable == false){
           Minotaur.all[0].invulnerable = true
@@ -97,9 +99,10 @@ function collisionTestMethod(object){
               playableCharacter.health -= 20
               Counter.changeHealth(playableCharacter.health)
               }
-            window.setTimeout(() => playableCharacter.invulnerable = false, 2000)
+            window.setTimeout(() => playableCharacter.invulnerable = false, 3000)
             }
           }
+        }
         }
 
 function collisionDetection(characterPositions, characterWidth, characterHeight, objectPositions){

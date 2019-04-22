@@ -9,15 +9,18 @@ class AnimatedObject {
   }
 
   animateObject(animationSet, desiredFrameCount, callback){
-    const can2 = document.querySelector('#foreground');
-    const ctx2 = can2.getContext('2d');
 
     if(this.direction == animationSet.direction){
 
+      if(this.dead == true){
+        this.context.clearRect(this.x, this.y, this.width, this.height);
+        cancelAnimationFrame(aniOne)
+        cancelAnimationFrame(aniTwo)
+      }
     let cycleLoop = range(0, animationSet.frames);
     this.frameCount++;
     if (this.frameCount < desiredFrameCount) {
-        window.requestAnimationFrame(() => this.animateObject(animationSet, desiredFrameCount, callback));
+        let aniOne = window.requestAnimationFrame(() => this.animateObject(animationSet, desiredFrameCount, callback));
         return;
       }
     this.frameCount = 0;
@@ -28,7 +31,7 @@ class AnimatedObject {
     if (this.currentLoopIndex >= cycleLoop.length) {
       this.currentLoopIndex = 0;
     }
-    window.requestAnimationFrame(() => this.animateObject(animationSet, desiredFrameCount, callback));
+    let aniTwo = window.requestAnimationFrame(() => this.animateObject(animationSet, desiredFrameCount, callback));
     }
   }
 
