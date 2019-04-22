@@ -43,8 +43,7 @@
 
   const runGame = () => {
     character.idle()
-    let minotaur = new Minotaur
-    minotaur.idle()
+    new Minotaur
 
     document.addEventListener('keydown', function(e){
       if(e.repeat) return
@@ -56,10 +55,18 @@
         character.direction = "left"
         character.runLeft()
       }
+      if(e.key == 'Shift'){
+        character.battling()
+      }
     })
 
     document.addEventListener('keyup', function(e){
-      if(e.key == 'ArrowRight'||e.key == 'ArrowLeft'){
+      if(character.direction == 'battling'){
+        window.setTimeout(() => {
+          character.direction = "stop"
+          character.idle()
+        }, 1000)
+      }else{
       character.direction = "stop"
       character.idle()
       }

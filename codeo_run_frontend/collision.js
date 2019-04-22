@@ -15,10 +15,9 @@ function avoidItemPlatformOL(){
             //if(((iright>=pleft)&&(ileft<=pright)) || ((ibottom>=ptop)&&(itop<=pbottom))){
             if(((pleft < iright) && (pright > ileft) && (pbottom > itop) && (ptop < ibottom))){
                 item.context.clearRect(item.x, item.y, item.width, item.height)
-                console.log("got here! If item and platform are overlapping, lets delete the item")
             }
-        }  
-    } 
+        }
+    }
 }
 
 function renderPosition(object){
@@ -59,7 +58,7 @@ function collisionTestMethod(object){
 
         if(object==platform){
             //console.log("collision occurred with a platform")
-            
+
 
             if(playableCharacter.y + playableCharacter.height < object.y + 30){
               playableCharacter.falls  = false
@@ -77,9 +76,17 @@ function collisionTestMethod(object){
           }
         }
     }
+    if(Minotaur.all[0].dead == false){
     if(minotaurCollisionDetection(characterPositions, characterWidth, characterHeight)){
       var audio = new Audio(`./assets/Audio/Strong_Punch-Mike_Koenig-574430706.mp3`);
-            audio.play();
+            //audio.play();
+      if(playableCharacter.direction == 'battling'){
+        if(Minotaur.all[0].invulnerable == false){
+          Minotaur.all[0].invulnerable = true
+          Minotaur.all[0].health -= 20
+          }
+        window.setTimeout(() => Minotaur.all[0].invulnerable = false, 2000)
+      }else{
       if(Minotaur.all[0].x >= playableCharacter.x){
             playableCharacter.knockbackLeft()
           } else {
@@ -92,10 +99,12 @@ function collisionTestMethod(object){
               playableCharacter.health -= 20
               Counter.changeHealth(playableCharacter.health)
               }
-            window.setTimeout(() => playableCharacter.invulnerable = false, 2000)
+            window.setTimeout(() => playableCharacter.invulnerable = false, 3000)
             }
+          }
         }
-            
+        }
+
 function collisionDetection(characterPositions, characterWidth, characterHeight, objectPositions){
     const playableCharacter = allPcs[0]
     var pleft = objectPositions[0];

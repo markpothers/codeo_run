@@ -7,6 +7,7 @@ class PlayableCharacter extends AnimatedObject{
         this.falls = true
         this.x = x
         this.y = y
+        this.dead = false
         this.width = 128
         this.height = 128
         this.bottom = this.y + this.height
@@ -55,6 +56,22 @@ class PlayableCharacter extends AnimatedObject{
             frames: 7,
             yPos: 1
 
+          },
+
+          battling: {
+
+            direction: 'battling',
+            frames: 10,
+            yPos: 4
+
+          },
+
+          battlingLeft: {
+
+            direction: 'battling',
+            frames: 10,
+            yPos: 11
+
           }
 
         }
@@ -99,6 +116,18 @@ class PlayableCharacter extends AnimatedObject{
     runRight() {
       this.animateObject(this.spritesheet.runRight, 5, () => {this.x += 30})
       this.pcPositions = [this.x, this.y];
+    }
+
+    battling() {
+      if(this.direction == 'left'){
+        this.direction = "battling"
+        this.animateObject(this.spritesheet.battlingLeft, 5, () => {this.x -= 5})
+        this.pcPositions = [this.x, this.y];
+      }else{
+        this.direction = "battling"
+        this.animateObject(this.spritesheet.battling, 5, () => {this.x += 5})
+        this.pcPositions = [this.x, this.y];
+      }
     }
 
     knockbackLeft(){
