@@ -1,0 +1,2 @@
+class NonPlayableCharactersController < ApplicationController
+end
